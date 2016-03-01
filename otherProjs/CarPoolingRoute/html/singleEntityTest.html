@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>single entity demo</title>
+    <link href='https://fonts.googleapis.com/css?family=Jaldi' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="../css/cardStyle.css">
+  </head>
+  <body>
+    <div class="itemCard">
+      <div class="userIC">
+        <div class="userIconIC">
+          <img src = "../img/userIcon.png" />
+          <!-- default icon loaded when no user dp -->
+        </div>
+        <div class="userNameIC">
+          driver
+          <!-- load driver name -->
+        </div>
+      </div>
+      <div class="mapIC" id="map"></div>
+      <!-- id is uniquely generated in js -->
+      <div class="dataIC">
+        <div class="dataPartitionIC">
+          <!-- A, B, datetime | join cost, flat rate cost, capacity, capacity left, time deviation, distance deviation-->
+          <div class="iconDPIC pIC">
+            field[icon]
+          </div>
+          <div class="valueDPIC pIC">
+            value
+          </div>
+        </div>
+        <div class="dataPartitionIC">
+          <!-- A, B, datetime | join cost, flat rate cost, capacity, capacity left, time deviation, distance deviation-->
+          <div class="iconDPIC pIC">
+            field[icon]
+          </div>
+          <div class="valueDPIC pIC">
+            value
+          </div>
+        </div>
+        <!-- can nest multiple DPICs-->
+      </div>
+      <div class="btnIC">
+        book ride
+        <!-- negotiate(search) / book(search) / edit(routes) / advertize (routes) / view (pending)-->
+      </div>
+      <!-- can nest multiple buttons -->
+    </div>
+  </body>
+
+  <script src="../js/mapUtils.js"></script>
+  <!-- generate maps in div -->
+  <script src="https://maps.googleapis.com/maps/api/js?callback=loadMapTest&libraries=places"
+      async defer></script>
+  <!-- load google maps api -->
+</html>

@@ -1,0 +1,16 @@
+#searchList {
+
+  display: flex;
+  flex-flow: column;
+  flex-wrap: wrap;
+  position: fixed;
+  top:0px;
+  bottom: 0px;
+  width: 100vw;
+  align-items:flex-start;
+  justify-content: flex-start;
+  overflow: scroll;
+}
+#searchList > .itemCard {
+  margin: 10px;
+}

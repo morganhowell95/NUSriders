@@ -1,0 +1,22 @@
+install windows machine
+install flash/illustrator to draw icons
+replace default user icon
+draw icons for data
+
+ajax to pull postgresql data
+  - communicate to js entity manager
+  - place markers in map previews
+
+start prototyping the pages
+  - navBar
+  - RIDING
+    - searchbar
+    - search list
+    - booked rides slider
+
+    http://www.w3schools.com/php/php_ajax_php.asp
+    https://developers.google.com/places/place-id
+    https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-directions
+    https://developers.google.com/maps/documentation/javascript/examples/marker-remove
+    https://flatuicolors.com/
+    https://developers.google.com/maps/tutorials/fundamentals/adding-a-google-map

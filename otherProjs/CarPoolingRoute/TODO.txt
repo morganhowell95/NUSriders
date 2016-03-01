@@ -1,0 +1,18 @@
+the nature of the div is to overflow wrap to the right... otherwise expand to bottom
+meaning. the divs are defined by height, if overflow a scroll is required.
+
+you can basically start implementing your viewer...
+make it oop.. have its own prefix id.. so each list can have a unique map subset
+
+1. DRIVER/RIDER/USER nav bar
+2. Search + Filter bar
+3. Driver divs
+4. Modal Dialog
+5. Setup DB
+6. PHP Connect + Queries
+7. AJAX + dom updater
+8. Insert Queries
+9. DONE
+* user page
+
+http://jsfiddle.net/1mhsynmw/572/
