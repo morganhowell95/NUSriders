@@ -8,9 +8,9 @@ function init() {
 
   var fromBox = makeSearchBox("pac-input-A");
   var toBox = makeSearchBox("pac-input-B");
-  
+
   var listDOM = document.getElementById("searchList");
-  for(var i = 0; i < 12; i++) {
+  for(var i = 0; i < 13; i++) {
     objs[i] = wrapEntity(makeEntity(i, 2, "book"));
 
     listDOM.appendChild(objs[i].obj);
@@ -31,14 +31,14 @@ function init() {
     //TESTING HARDCODED VALUES ---------------------------
   }
   //-----------------------------------------------------
-  setTimeout(function() {
-    updateMarkers(objs[2],
-      "ChIJHSrGJ5EZ2jERTzbUyme7KuQ",
-      "ChIJFQYC8YwZ2jERDRaSlDO1Q0k");
-    updateMarkers(objs[4],
-      "ChIJb-ErmBYX2jERBl1gF7cPIj4",
-      "ChIJVVRNg0oX2jERxH0FUCJhoz4");
-}, 10000);
+  //setTimeout(function() {
+  //  updateMarkers(objs[2],
+  //    "ChIJHSrGJ5EZ2jERTzbUyme7KuQ",
+  //    "ChIJFQYC8YwZ2jERDRaSlDO1Q0k");
+  //  updateMarkers(objs[4],
+  //    "ChIJb-ErmBYX2jERBl1gF7cPIj4",
+  //    "ChIJVVRNg0oX2jERxH0FUCJhoz4");
+  //}, 10000);
   // TESTING OVERRIDE UPDATE ---------------------------
 }
 
