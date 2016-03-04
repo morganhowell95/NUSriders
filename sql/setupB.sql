@@ -29,3 +29,4 @@ CREATE TABLE PROPOSAL (
 ROUTE has to update RIDE
 RIDE has to update PROPOSAL
 likewise for deletes */
+/* note no sufficient currency check to apply proposal constraint is set */

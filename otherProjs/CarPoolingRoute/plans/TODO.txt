@@ -1,22 +1,9 @@
-install windows machine
-install flash/illustrator to draw icons
-replace default user icon
-draw icons for data
 
-ajax to pull postgresql data
-  - communicate to js entity manager
-  - place markers in map previews
-
-start prototyping the pages
-  - navBar
-  - RIDING
-    - searchbar
-    - search list
-    - booked rides slider
-
-    http://www.w3schools.com/php/php_ajax_php.asp
-    https://developers.google.com/places/place-id
-    https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-directions
-    https://developers.google.com/maps/documentation/javascript/examples/marker-remove
-    https://flatuicolors.com/
-    https://developers.google.com/maps/tutorials/fundamentals/adding-a-google-map
+1. DRIVER/RIDER/USER nav bar  << keep huilin's implementation (DONE)
+2. Search + Filter bar        << changed filter to time deviation (DONE)
+3. User's Page (RT+ANEGO list)
+4. Create Route Page
+5. Create Advertize Page
+6. Setup DB                   << (DONE)
+7. PHP Connect + Queries
+8. AJAX + dom updater
