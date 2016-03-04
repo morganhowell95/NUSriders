@@ -1,8 +1,10 @@
+/** given a DOM id of a input text field, initialize google search box to it */
 function makeSearchBox(id) {
   var input = document.getElementById(id);
   return new google.maps.places.SearchBox(input);
 }
 
+/** given a DOM id of a div, initialize maps api into it */
 function makeMap(id) {
   var mapDiv = document.getElementById("map" + id);
   // get map DOM div object
@@ -19,10 +21,13 @@ function makeMap(id) {
   });
 }
 
+/** given a google map object, generate a places service*/
 function loadService(map) {
   return new google.maps.places.PlacesService(map);
 }
 
+/** given the map, its service, and marker arguments, return marker via a
+callback function and also the name of the marker */
 function loadMarker(service, map, label, placeId, callback) {
   service.getDetails({
     placeId: placeId
@@ -40,6 +45,7 @@ function loadMarker(service, map, label, placeId, callback) {
   });
 }
 
+/** resize viewport of map given two google position objects */
 function updateMapBounds(posA, posB, map) {
   var bounds = new google.maps.LatLngBounds();
   bounds.extend(posA);
