@@ -4,7 +4,7 @@ Manages a list dom that creates and destroys entities
 @param  id:String       unique id for the list so as not to clash with other lists
 @param  TODO make entityMaker Object that specifies fields/entity structure
 */
-function makeList(domID, id) {
+function makeList(domID, id, maker) {
 
   // PROPERTIES================================================================
 
@@ -16,27 +16,19 @@ function makeList(domID, id) {
   // METHODS ==================================================================
   /** Creates a new entity */
   this.addEntity = function(){
-    console.log("add");
     var curID = id + this.objs.length.toString();
-    var entity = wrapEntity(makeEntity(curID, 2, "book"));
+    var entity = wrapEntity(new makeEntity(curID, 2, "book"));
     this.listDOM.appendChild(entity.obj);
-    //TODO temp 2
+    //TODO abstractify your maker
 
     this.objs.push(entity);
     entity.map = makeMap(curID);
     entity.service = loadService(entity.map);
-
     cascadeToPoint(entity, entity.A);
     cascadeToPoint(entity, entity.B);
+    // load and manage google map services
 
-    //TEMP
-    updateFieldName(entity.obj, 0, "From");
-    updateFieldName(entity.obj, 1, "To");
-    updateDriverName(entity.obj, "driver"+ this.objs.length.toString());
-    this.updateMarkers(this.objs.length - 1,
-      "ChIJOdueMVIa2jERhE4TnhWtNpo",
-      "ChIJSeUa7KcZ2jERNVg2CvmlVbk");
-    //END OF TEMP
+    return entity;
   }
   /** Remove the last entity created */
   this.removeLastEntity = function(){
@@ -46,10 +38,11 @@ function makeList(domID, id) {
   function wrapEntity(entity) {
     return {
       loaded: false,
-      obj: entity,
+      intf: entity,
+      obj: entity.card,
       map: undefined,
-      A: point(Alb),
-      B: point(Blb),
+      A: point('A'),
+      B: point('B'),
       markersLoaded: 0
     };
   }
@@ -80,8 +73,8 @@ function makeList(domID, id) {
     obj.markersLoaded = 0;
     obj.A.id = idA;
     obj.B.id = idB;
-    queuePt(obj.A, obj);
-    queuePt(obj.B, obj);
+    markerLoader.queuePt(obj.A, obj);
+    markerLoader.queuePt(obj.B, obj);
   }
 }
 
