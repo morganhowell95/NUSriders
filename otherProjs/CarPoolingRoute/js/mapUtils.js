@@ -1,3 +1,8 @@
+function makeSearchBox(id) {
+  var input = document.getElementById(id);
+  return new google.maps.places.SearchBox(input);
+}
+
 function makeMap(id) {
   var mapDiv = document.getElementById("map" + id);
   // get map DOM div object
@@ -5,7 +10,6 @@ function makeMap(id) {
   return new google.maps.Map(mapDiv, {
     center: {lat: 1.35, lng: 103.82},
     zoom: 10,
-    disableDefaultUI: true,
     keyboardShortcuts: false,
     scrollwheel: false,
     navigationControl: false,

@@ -5,6 +5,10 @@ var Blb = 'B';
 // GLOBAL VARIABLES ===========================================================
 
 function init() {
+
+  var fromBox = makeSearchBox("pac-input-A");
+  var toBox = makeSearchBox("pac-input-B");
+  
   var listDOM = document.getElementById("searchList");
   for(var i = 0; i < 12; i++) {
     objs[i] = wrapEntity(makeEntity(i, 2, "book"));

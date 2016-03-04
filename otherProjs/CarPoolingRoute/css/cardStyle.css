@@ -10,7 +10,7 @@
   font-size: 0.75em;
   font-family: 'Lato', sans-serif;
   color: #6C7A89;
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(250, 255, 255);
   /* content */
 }
 
@@ -81,7 +81,7 @@
   font-weight: bold;
   text-align: center;
   color: #3498db;
-  background-color: rgb(235,235,235);
+  background-color: rgb(253,253,253);
   /* content */
 }
 .btnIC:hover {
