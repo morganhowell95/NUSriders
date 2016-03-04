@@ -2,7 +2,7 @@
 Manages a list dom that creates and destroys entities
 @param  domID:String    id in html to the div to be a list
 @param  id:String       unique id for the list so as not to clash with other lists
-@param  TODO make entityMaker Object that specifies fields/entity structure
+@param  maker:function  see entityMaker.js for example of maker functions
 */
 function makeList(domID, id, maker) {
 
@@ -17,7 +17,7 @@ function makeList(domID, id, maker) {
   /** Creates a new entity */
   this.addEntity = function(){
     var curID = id + this.objs.length.toString();
-    var entity = wrapEntity(new makeEntity(curID, 2, "book"));
+    var entity = wrapEntity(new maker(curID));
     this.listDOM.appendChild(entity.obj);
     //TODO abstractify your maker
 
