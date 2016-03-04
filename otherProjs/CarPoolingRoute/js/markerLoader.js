@@ -39,3 +39,12 @@ function startLoading() {
     }
   });
 }
+
+function markerLoadComplete(obj) {
+  updateMapBounds(
+    obj.A.marker.getPosition(),
+    obj.B.marker.getPosition(),
+    obj.map);
+  updateFieldValue(obj.obj, 0, obj.A.name);
+  updateFieldValue(obj.obj, 1, obj.B.name);
+}
