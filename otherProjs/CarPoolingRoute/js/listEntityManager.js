@@ -4,7 +4,7 @@ Manages a list dom that creates and destroys entities
 @param  id:String       unique id for the list so as not to clash with other lists
 @param  maker:function  see entityMaker.js for example of maker functions
 */
-function makeList(domID, id, maker) {
+function List(domID, id, maker) {
 
   // PROPERTIES================================================================
 
@@ -19,7 +19,7 @@ function makeList(domID, id, maker) {
     var curID = id + this.objs.length.toString();
     var entity = wrapEntity(new maker(curID));
     this.listDOM.appendChild(entity.obj);
-    //TODO abstractify your maker
+    // create entity instance
 
     this.objs.push(entity);
     entity.map = makeMap(curID);

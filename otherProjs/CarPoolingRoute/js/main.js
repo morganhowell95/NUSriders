@@ -3,7 +3,7 @@ function init() {
 
   var fromBox = makeSearchBox("pac-input-A");
   var toBox = makeSearchBox("pac-input-B");
-  var list = new makeList("searchList", "sl", makeAB);
+  var list = new List("searchList", "sl", makeAB);
 
   // TEST CODE TO FORCE GENERATE SOME ENTITIES
   //-----------------------------------------------------
