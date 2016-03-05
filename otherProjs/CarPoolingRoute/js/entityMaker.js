@@ -11,7 +11,7 @@ TODO consider inheritance of maker functions... but its so chim...
 */
 
 /** make driver's routes entities */
-function makeRT(id) {
+function makeRTP(id) {
   var fields = 3;
   var buttonLabel = "advertize";
 
@@ -25,10 +25,10 @@ function makeRT(id) {
   var FIELDS = 1;
   var FIELDS_ROW_LABEL = 0;
   var FIELDS_ROW_VALUE = 1;
+  var BUTTON = 2;
   this.updateDriverName = function (driver) {
 
   };
-
   /** ensure row index exists otherwise it will fuck up */
   this.updateFieldName = function(row, field) {
     this.card.childNodes[FIELDS].childNodes[row].childNodes[FIELDS_ROW_LABEL].childNodes[0].nodeValue = field;
@@ -36,6 +36,9 @@ function makeRT(id) {
 
   this.updateFieldValue = function(row, value) {
     this.card.childNodes[FIELDS].childNodes[row].childNodes[FIELDS_ROW_VALUE].childNodes[0].nodeValue = value;
+  }
+  this.removeButtonEvent = function() {
+    this.card.childNodes[BUTTON].onclick = null;
   }
   // setup interface for inheritance
   this.updateFieldName(0, "From");
@@ -62,6 +65,7 @@ function makeAB(id) {
   var FIELDS = 2;
   var FIELDS_ROW_LABEL = 0;
   var FIELDS_ROW_VALUE = 1;
+  var BUTTON = 3;
   this.updateDriverName = function (driver) {
     this.card.childNodes[HEAD].childNodes[HEAD_NAMEFIELD].childNodes[0].nodeValue = driver;
   };
@@ -73,6 +77,9 @@ function makeAB(id) {
 
   this.updateFieldValue = function(row, value) {
     this.card.childNodes[FIELDS].childNodes[row].childNodes[FIELDS_ROW_VALUE].childNodes[0].nodeValue = value;
+  }
+  this.removeButtonEvent = function() {
+    this.card.childNodes[BUTTON].onclick = null;
   }
   // setup interface for inheritance
   this.updateFieldName(0, "From");

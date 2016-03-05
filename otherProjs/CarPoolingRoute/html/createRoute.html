@@ -5,8 +5,8 @@
     <meta charset="utf-8" />
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="../css/fieldsStyle.css" />
-    <link rel="stylesheet" type="text/css" href="../css/createRoutePageStyle.css" />
     <link rel="stylesheet" type="text/css" href="../css/pageLayout.css">
+    <link rel="stylesheet" type="text/css" href="../css/createRoutePageStyle.css" />
   </head>
   <body>
     <div id="wrapper">
@@ -30,9 +30,12 @@
         </div>
       </div>
     </div>
-    <script src="../js/googleUtils.js"></script>
-    <script src="../js/createRouteMain.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=init"
-        async defer></script>
   </body>
+  <script src="../js/googleUtils.js"></script>
+  <!-- load libraries -->
+  <script src="../js/createRouteMain.js"></script>
+  <!-- load page main method -->
+  <script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=init"
+      async defer></script>
+  <!-- load google maps api -->
 </html>

@@ -32,7 +32,10 @@ function List(domID, id, maker) {
   }
   /** Remove the last entity created */
   this.removeLastEntity = function(){
-    listDOM.removeChild(objs.pop());
+    var obj = this.objs.pop();
+    obj.intf.removeButtonEvent();
+    this.listDOM.removeChild(obj.obj);
+    obj = null;
   }
   /** declare dom object into entity wrapper */
   function wrapEntity(entity) {

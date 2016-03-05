@@ -1,26 +1,34 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
     <title>NUSriders</title>
+    <meta charset="utf-8" />
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="../css/cardStyle.css">
     <link rel="stylesheet" type="text/css" href="../css/listStyle.css">
-    <link rel="stylesheet" type="text/css" href="../css/fieldsStyle.css">
     <link rel="stylesheet" type="text/css" href="../css/pageLayout.css">
-    <link rel="stylesheet" type="text/css" href="../css/searchRidePageStyle.css">
+    <link rel="stylesheet" type="text/css" href="../css/profilePageStyle.css">
   </head>
   <body>
     <div id="wrapper">
-      <div class ="header">
-        SEARCH RIDES
+      <div class="header">
+        <img id = "userImg" src="../img/userIcon3.png" /> <br />
+        SAY MY NAME
       </div>
-      <div id="searchBar">
-        <input id="pac-input-A" class = "controls pac-input" type="search" placeholder="From" />
-        <input id="pac-input-B" class = "controls pac-input" type="search" placeholder="To" />
-        <input id="pac-input-T" class = "controls pac-input pac-input-T" type="time" placeholder="hh:mm"/>
+      <div id="partitionContainer" >
+        <div class="listPartition">
+          <div class="subheader header">
+            ROUTES
+          </div>
+          <div id = "rList" class="list"></div>
+        </div>
+        <div class="listPartition">
+          <div class="subheader header">
+            PENDING RIDES
+          </div>
+          <div id = "pList" class="list"></div>
+        </div>
       </div>
-      <div id="searchList" class = "list"></div>
       <div id ="footer">
         <div id="footercontent">
           <b>FOOTER TEST</b> <br />
@@ -34,7 +42,7 @@
   <script src="../js/entityMaker.js"></script>
   <script src="../js/googleUtils.js"></script>
   <!-- load libraries -->
-  <script src="../js/searchRideMain.js"></script>
+  <script src="../js/profileMain.js"></script>
   <!-- load page main method -->
   <script src="https://maps.googleapis.com/maps/api/js?callback=init&libraries=places"
       async defer></script>
