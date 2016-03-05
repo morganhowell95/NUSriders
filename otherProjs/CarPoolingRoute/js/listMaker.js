@@ -4,7 +4,7 @@ Manages a list dom that creates and destroys entities
 @param  id:String       unique id for the list so as not to clash with other lists
 @param  maker:function  see entityMaker.js for example of maker functions
 */
-function List(domID, id, maker) {
+function List(domID, id) {
 
   // PROPERTIES================================================================
 
@@ -15,19 +15,20 @@ function List(domID, id, maker) {
 
   // METHODS ==================================================================
   /** Creates a new entity */
-  this.addEntity = function(){
+  this.addEntity = function(maker, disableMap){
     var curID = id + this.objs.length.toString();
     var entity = wrapEntity(new maker(curID));
     this.listDOM.appendChild(entity.obj);
     // create entity instance
 
+    if(disableMap == undefined) {
     this.objs.push(entity);
     entity.map = makeMap(curID);
     entity.service = loadService(entity.map);
     cascadeToPoint(entity, entity.A);
     cascadeToPoint(entity, entity.B);
     // load and manage google map services
-
+    }
     return entity;
   }
   /** Remove the last entity created */

@@ -3,13 +3,13 @@ function init() {
 
   var fromBox = makeSearchBox("pac-input-A");
   var toBox = makeSearchBox("pac-input-B");
-  var list = new List("searchList", "sl", makeAB);
+  var list = new List("searchList", "sl");
 
   // TEST CODE TO FORCE GENERATE SOME ENTITIES
   //-----------------------------------------------------
   // notice how real implementation is like only 3 lines
   for(var i = 0; i < 13; i++) {
-    var ent = list.addEntity();
+    var ent = list.addEntity(makeAB);
     // force create entities
     ent.intf.updateDriverName("driver"+ i.toString());
     list.updateMarkers(i,

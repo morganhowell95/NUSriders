@@ -40,7 +40,7 @@ function makeRTP(id) {
   this.removeButtonEvent = function() {
     this.card.childNodes[BUTTON].onclick = null;
   }
-  // setup interface for inheritance
+  // setup interface
   this.updateFieldName(0, "From");
   this.updateFieldName(1, "To");
   this.updateFieldName(2, "ALooo");
@@ -69,22 +69,44 @@ function makeAB(id) {
   this.updateDriverName = function (driver) {
     this.card.childNodes[HEAD].childNodes[HEAD_NAMEFIELD].childNodes[0].nodeValue = driver;
   };
-
   /** ensure row index exists otherwise it will fuck up */
   this.updateFieldName = function(row, field) {
     this.card.childNodes[FIELDS].childNodes[row].childNodes[FIELDS_ROW_LABEL].childNodes[0].nodeValue = field;
   }
-
   this.updateFieldValue = function(row, value) {
     this.card.childNodes[FIELDS].childNodes[row].childNodes[FIELDS_ROW_VALUE].childNodes[0].nodeValue = value;
   }
   this.removeButtonEvent = function() {
+    this.card.childNodes[HEAD].onclick = null;
     this.card.childNodes[BUTTON].onclick = null;
   }
-  // setup interface for inheritance
+  // setup interface
   this.updateFieldName(0, "From");
   this.updateFieldName(1, "To");
   // END OF IMPLEMENTATION
+}
+
+function makeAddRouteBtn() {
+  this.card = document.createElement('div');
+  this.card.setAttribute('class', "btnCard");
+
+  var icCn = document.createElement('div');
+  icCn.setAttribute('class', "btnIconIC");
+  var icIm = document.createElement('img');
+  icIm.src = "../img/addIcon.png";
+  icCn.appendChild(icIm);
+  this.card.appendChild(icCn);
+
+  var cont = document.createElement('div');
+  cont.setAttribute('class', "btnLabelCont");
+  cont.appendChild(document.createTextNode("ADD NEW ROUTE"));
+  this.card.appendChild(cont);
+  this.removeButtonEvent = function() {
+    this.card.onclick = null;
+  }
+  this.card.onclick = function(){
+    window.location.href = './createRoute.html';
+  }
 }
 
 // DIV ELEMENTS CONSTRUCTOR METHODS ===========================================
@@ -110,7 +132,7 @@ function makeEntityHead() {
   cont.appendChild(icNm);
 
   cont.onclick = function() {
-    alert("go to user page");
+    window.location.href = './profilePage.html';
   }
   return cont;
 }

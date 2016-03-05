@@ -1,8 +1,9 @@
 function init() {
-  var rList = new List("rList", "rl", makeRTP);
-  var pList = new List("pList", "pl", makeAB);
+  var rList = new List("rList", "rl");
+  var pList = new List("pList", "pl");
   for(i = 0; i < 3; i++) {
-  rList.addEntity();
-  pList.addEntity();
-}
+    rList.addEntity(makeRTP);
+    pList.addEntity(makeAB);
+  }
+  rList.addEntity(makeAddRouteBtn, false);
 }

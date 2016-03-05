@@ -1,16 +1,15 @@
-
-  #partitionContainer {
-    display: flex;
-    flex-wrap: wrap;
-    flex-flow: column;
-    overflow: auto;
-    flex-grow: 1;
-  }
-
+#partitionContainer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-flow: column;
+  overflow: auto;
+  flex-grow: 1;
+}
 .subheader {
+  font-size: 1.2em;
   background-color: #3498db;
   color: rgba(255, 255, 255, 0.6);
-  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.3);
+  z-index: 9998;
 }
 .listPartition {
   display: flex;

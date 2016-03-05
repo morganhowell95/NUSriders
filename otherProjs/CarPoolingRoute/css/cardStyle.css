@@ -4,7 +4,6 @@
   flex-wrap: nowrap;
   /* display */
   width: 200px;
-  border-radius: 7px;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   /* container */
   font-size: 0.75em;
@@ -74,8 +73,6 @@
   cursor:pointer;
   transition: all 0.2s ease;
   /* display */
-  border-bottom-right-radius : inherit;
-  border-bottom-left-radius : inherit;
   padding: 5px 0px;
   /* container */
   font-weight: bold;
@@ -89,4 +86,29 @@
   background-color: #3498db;
   padding: 20px 0px;
   /* content */
+}
+.btnCard {
+  cursor: pointer;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  border-style: dashed;
+  padding: 25px;
+  height: 150px;
+  border-color: rgb(0,0,0);
+  color: rgb(0,0,0);
+  opacity: 0.3;
+  transition: all 0.2s ease;
+}
+.btnCard:hover {
+  opacity: 0.6;
+}
+.btnIconIC > img{
+  display: block;
+  /* display */
+  width: 40px;
+  height: 40px;
+  /* container */
+  opacity: inherit;
 }
