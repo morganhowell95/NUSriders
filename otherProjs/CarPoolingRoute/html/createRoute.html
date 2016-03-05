@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NUSriders</title>
+    <meta charset="utf-8" />
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="../css/fieldsStyle.css" />
+    <link rel="stylesheet" type="text/css" href="../css/createRoutePageStyle.css" />
+    <link rel="stylesheet" type="text/css" href="../css/pageLayout.css">
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="header">
+        ROUTE EDITOR
+      </div>
+      <div id="searchWindow">
+        <input id="origin-input" class="controls pac-input" type="text"
+            placeholder="Enter an origin location">
+        <input id="destination-input" class="controls pac-input" type="text"
+            placeholder="Enter a destination location">
+        <div id="btn" type="submit" value="create route" class="controls pac-btn">create route</div>
+        <div id="mapR"></div>
+      </div>
+      <div id ="footer">
+        <div id="footercontent">
+          FOOTER TEST <br />
+          &copy; CS2102 HuiLin | Morgan | Dennis | Haliq
+        </div>
+      </div>
+    </div>
+    <script src="../js/googleUtils.js"></script>
+    <script src="../js/createRouteMain.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=init"
+        async defer></script>
+  </body>
+</html>

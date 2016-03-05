@@ -1,0 +1,21 @@
+#searchList {
+  width: 100%;
+  flex-grow: 1;
+}
+.list {
+  background-color: rgba(0, 0, 0, 0.025);
+  display: flex;
+  flex-flow: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: auto;
+}
+.list > .itemCard {
+  margin: 10px;
+}
+#searchBar {
+  padding: 20px;
+  text-align: center;
+  background-color: #3498db;
+}

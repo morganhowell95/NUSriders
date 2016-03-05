@@ -1,0 +1,8 @@
+#searchWindow {
+  flex-grow: 1;
+  margin: 0;
+  padding: 0;
+}
+#mapR {
+  height: 100%;
+}

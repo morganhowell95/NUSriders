@@ -12,6 +12,7 @@ function makeMap(id) {
   return new google.maps.Map(mapDiv, {
     center: {lat: 1.35, lng: 103.82},
     zoom: 10,
+    disableDefaultUI: true,
     keyboardShortcuts: false,
     scrollwheel: false,
     navigationControl: false,

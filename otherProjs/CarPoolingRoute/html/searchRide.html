@@ -2,22 +2,29 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>list test</title>
+    <title>NUSriders</title>
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="../css/cardStyle.css">
-    <link rel="stylesheet" type="text/css" href="../css/listTest.css">
+    <link rel="stylesheet" type="text/css" href="../css/fieldsStyle.css">
+    <link rel="stylesheet" type="text/css" href="../css/searchRidePageStyle.css">
+    <link rel="stylesheet" type="text/css" href="../css/pageLayout.css">
   </head>
   <body>
-    <div id="pageWrapper">
+    <div id="wrapper">
+      <div id="header">
+        SEARCH RIDES
+      </div>
       <div id="searchBar">
         <input id="pac-input-A" class = "controls pac-input" type="search" placeholder="From" />
-        <input id="pac-input-TA" class = "controls pac-input pac-input-T" type="time" placeholder="hh:mm"/>
         <input id="pac-input-B" class = "controls pac-input" type="search" placeholder="To" />
-        <input id="pac-input-TB" class = "controls pac-input pac-input-T" type="time" placeholder="hh:mm"/>
+        <input id="pac-input-T" class = "controls pac-input pac-input-T" type="time" placeholder="hh:mm"/>
       </div>
       <div id="searchList" class = "list"></div>
-      <div>
-        footer test
+      <div id ="footer">
+        <div id="footercontent">
+          FOOTER TEST <br />
+          &copy; CS2102 HuiLin | Morgan | Dennis | Haliq
+        </div>
       </div>
     </div>
   </body>
@@ -26,7 +33,7 @@
   <script src="../js/entityMaker.js"></script>
   <script src="../js/googleUtils.js"></script>
   <!-- load libraries -->
-  <script src="../js/main.js"></script>
+  <script src="../js/searchRideMain.js"></script>
   <!-- load page main method -->
   <script src="https://maps.googleapis.com/maps/api/js?callback=init&libraries=places"
       async defer></script>
