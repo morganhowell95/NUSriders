@@ -16,7 +16,7 @@ var markerLoader = (function(){
         pt.name = name;
         pt.marker = marker;
         pr.markersLoaded++;
-        if(pr.markersLoaded == 2) {
+        if(pr.markersLoaded >= 2) {
           pr.loaded = true;
           markerLoadComplete(pr);
         }
