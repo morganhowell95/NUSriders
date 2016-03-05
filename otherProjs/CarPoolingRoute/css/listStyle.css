@@ -1,7 +1,7 @@
 .list {
   width: 100%;
   flex-grow: 1;
-  background-color: rgba(0, 0, 0, 0.025);
+  background-color: white;
   display: flex;
   flex-flow: column;
   flex-wrap: wrap;
