@@ -14,7 +14,6 @@ function init() {
   map.keyboardShortcuts = true;
   map.scrollwheel = true;
   map.navigationControl = true;
-  map.mapTypeControl = true;
   map.scaleControl = true;
   map.draggable = true;
   var directionsService = new google.maps.DirectionsService;
@@ -25,8 +24,7 @@ function init() {
   var origin_input = document.getElementById('origin-input');
   var destination_input = document.getElementById('destination-input');
   var btn_input = document.getElementById('btn');
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(origin_input);
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(destination_input);
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(document.getElementById('inputContainer'));
   map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(btn_input);
   // initialize fields
 
