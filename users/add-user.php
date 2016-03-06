@@ -5,12 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
-
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
     <link href="../css/dashboard.css" rel="stylesheet">
 <style>  
 li {listt-style: none;}  
@@ -53,11 +49,11 @@ li {listt-style: none;}
             <li><a href="#">Requests</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-			<li><a href="../NUSriders/drivers-list.php">Drivers</a></li>
-			<li><a href="../NUSriders/riders-list.php">Riders</a></li>
-			<li><a href="../NUSriders/users-list.php">All users</a></li>
-			<li class="active"><a href="../NUSriders/add-user.php">Add user<span class="sr-only">(current)</span></a></li>
-			<li><a href="../NUSriders/update-user.php">Update user</a></li>
+			<li><a href="drivers-list.php">Drivers</a></li>
+			<li><a href="riders-list.php">Riders</a></li>
+			<li><a href="users-list.php">All users</a></li>
+			<li class="active"><a href="add-user.php">Add user<span class="sr-only">(current)</span></a></li>
+			<li><a href="update-user.php">Update user</a></li>
           </ul>
         </div>
 	</div>
