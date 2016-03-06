@@ -23,8 +23,8 @@
   text-align: center;
   padding: 15px;
   background-color: rgba(0, 0, 0, 0.9);
-  color: #3498db;
-  font-size: 0.8em;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.7em;
 }
 #footercontent {
   width: 100%;

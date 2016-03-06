@@ -3,18 +3,24 @@
 2. Search + Filter bar        << changed filter to time deviation (DONE)
 3. User's Page (RT+ANEGO list)<< (DONE)
 4. Create Route Page          << (DONE)
-5. Create Advertize Page      
+5. Create Advertize Page
 6. Setup DB                   << (DONE)
 7. PHP Connect + Queries
 8. AJAX + dom updater
 
-
-ADVERTIZE: map + A + B + pickup time + cost per head + capacity
-
-so.... negotiation page is similar to advertize... except
-negotiation has a list of pending proposals
-
-but im thinking... to setup non negotiable... fcfs booking
-so no proposal status, immediate accept
-
-once you establish that, then do the ui then change query
+====
+EXTERNAL DEPENDENCIES
+DETECT user session in user page / create route page / nego page
+DETECT user of interest when opening user page
+ADD user profile button from home
+DETECT rideID in nego page
+DETECT routeID in advertize page
+=====
+EXTERNAL PHP FILES
+connect to DB
+button query calls
+- search
+- create route
+- create ride (advertize)
+- add proposal
+  - ride completed
