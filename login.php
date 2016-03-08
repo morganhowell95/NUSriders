@@ -36,7 +36,7 @@
 
 		      </form>
 		    
-    		<p>New to Alescro?  <a href="/signup.php">Sign up now.</a></p>
+    		<p>New to NUSRiders?  <a href="/signup.php">Sign up now.</a></p>
 		  </div>
 		</div>
 
