@@ -538,6 +538,28 @@ a:after {
 }
 
 
+input, textarea, select {
+  width: 100%;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border: 1px solid #BBB;
+}
+
+.form-group p {
+    color: #3276B1;
+}
+
+input {
+  height: auto ;
+}
+
+.ss-icon:hover {
+  color: blue;
+  background-color: white;
+}
+
 /* ==========================================================================
    MEDIA QUERIES
    ========================================================================== */

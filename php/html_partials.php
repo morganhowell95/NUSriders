@@ -38,7 +38,11 @@
 				<![endif]--> </head>';
 
 		$openbody = '<body data-spy="scroll" data-offset="0" data-target="#navbar-main">';
-		$navbar = genNavBar();
+		if($title=="Home") {
+			$navbar = genNavBarHome();
+		} else {
+			$navbar = genNavBar();
+		}
 		$openbody = $wrap . $head . $meta . $css . $javascripts . $shim . $openbody . $navbar;
 		$closebody = '</body>';
 
@@ -54,6 +58,32 @@
 	}
 
 	function genNavBar() {
+			$navbar = '
+		  	<div id="navbar-main">
+		      <!-- Fixed navbar -->
+		    <div class="navbar navbar-inverse navbar-fixed-top">
+		      <div class="container">
+		        <div class="navbar-header">
+		          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		            <span class="icon icon-shield" style="font-size:30px; color:#3498db;"></span>
+		          </button>
+		          <a class="navbar-brand hidden-xs hidden-sm" href="#home"><span class="icon icon-shield" style="font-size:18px; color:#3498db;"></span></a>
+		        </div>
+		        <div class="navbar-collapse collapse">
+		          <ul class="nav navbar-nav">
+		            <li><a href="/#home" class="smoothScroll">Home</a></li>
+					<li> <a href="/#about" class="smoothScroll"> About</a></li>
+					<li> <a href="/#make-location" class="smoothScroll"> Contact</a></li>
+					<li> <a href="/login.php" class="smoothScroll"> Login</a></li>
+		        </div><!--/.nav-collapse -->
+		      </div>
+		    </div>
+		    </div>
+			';
+		return $navbar;
+	}
+
+	function genNavBarHome() {
 		$navbar = '
 		  	<div id="navbar-main">
 		      <!-- Fixed navbar -->
@@ -70,7 +100,7 @@
 		            <li><a href="#home" class="smoothScroll">Home</a></li>
 					<li> <a href="#about" class="smoothScroll"> About</a></li>
 					<li> <a href="#make-location" class="smoothScroll"> Contact</a></li>
-					<li> <a href="#make-location" class="smoothScroll"> Login</a></li>
+					<li> <a href="/login.php" class="smoothScroll"> Login</a></li>
 		        </div><!--/.nav-collapse -->
 		      </div>
 		    </div>
