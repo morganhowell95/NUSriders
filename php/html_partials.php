@@ -13,7 +13,7 @@
 		/* add global css imports here */
 		$css = '
 				<link href="assets/css/main.css" rel="stylesheet">
-				<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+				<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 				<link href="assets/css/dashboard.css" rel="stylesheet">
 				<link href="assets/css/animate-custom.css" rel="stylesheet">
 				<link href="assets/css/icomoon.css" rel="stylesheet">
@@ -22,14 +22,17 @@
 		';
 
 		/* add global javascript imports here */
-		$javascripts = '<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-						<script src="assets/javascripts/bootstrap.min.js"></script>
+		$javascripts = '
+		       	<script src="https://code.jquery.com/jquery-2.2.2.min.js"> </script>
 						<script src="assets/javascripts/interact.js"></script>
 						<script src="assets/javascripts/jquery.easing.1.3.js"></script>
 						<script src="assets/javascripts/jquery-func.js"></script>
 						<script src="assets/javascripts/modernizr.custom.js"></script>
 						<script src="assets/javascripts/retina.js"></script>
 						<script src="assets/javascripts/smoothscroll.js"></script>
+						<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+						<script src="assets/javascripts/dropdown.js"></script>
+
 		';
 
 		$shim = '<!--[if lt IE 9]>
@@ -38,12 +41,7 @@
 				<![endif]--> </head>';
 
 		$openbody = '<body data-spy="scroll" data-offset="0" data-target="#navbar-main">';
-		if($title=="Home") {
-			$navbar = genNavBarHome();
-		} else {
-			$navbar = genNavBar();
-		}
-		$openbody = $wrap . $head . $meta . $css . $javascripts . $shim . $openbody . $navbar;
+		$openbody = $wrap . $head . $meta . $javascripts . $css . $shim . $openbody;
 		$closebody = '</body>';
 
 		if (is_null($body)) {
@@ -74,7 +72,6 @@
 		            <li><a href="/#home" class="smoothScroll">Home</a></li>
 					<li> <a href="/#about" class="smoothScroll"> About</a></li>
 					<li> <a href="/#make-location" class="smoothScroll"> Contact</a></li>
-					<li> <a href="/login.php" class="smoothScroll"> Login</a></li>
 		        </div><!--/.nav-collapse -->
 		      </div>
 		    </div>
@@ -83,7 +80,7 @@
 		return $navbar;
 	}
 
-	function genNavBarHome() {
+	function openGenNavBarHome() {
 		$navbar = '
 		  	<div id="navbar-main">
 		      <!-- Fixed navbar -->
@@ -100,12 +97,16 @@
 		            <li><a href="#home" class="smoothScroll">Home</a></li>
 					<li> <a href="#about" class="smoothScroll"> About</a></li>
 					<li> <a href="#make-location" class="smoothScroll"> Contact</a></li>
-					<li> <a href="/login.php" class="smoothScroll"> Login</a></li>
-		        </div><!--/.nav-collapse -->
-		      </div>
-		    </div>
-		    </div>
 			';
 		return $navbar;
+	}
+
+	function closeNavBar() {
+		$closenav = '
+										</div><!--/.nav-collapse -->
+								    </div>
+								    </div>
+								    </div>';
+		return $closenav;
 	}
 ?>

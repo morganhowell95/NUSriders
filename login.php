@@ -1,67 +1,241 @@
+<?php
+
+define('INCLUDE_CHECK',true);
+
+require 'connect.php';
+require 'functions.php';
+// Those two files can be included only if INCLUDE_CHECK is defined
+
+
+session_name('tzLogin');
+// Starting the session
+
+session_set_cookie_params(2*7*24*60*60);
+// Making the cookie live for 2 weeks
+
+session_start();
+
+if($_SESSION['id'] && !isset($_COOKIE['tzRemember']) && !$_SESSION['rememberMe'])
+{
+	// If you are logged in, but you don't have the tzRemember cookie (browser restart)
+	// and you have not checked the rememberMe checkbox:
+
+	$_SESSION = array();
+	session_destroy();
+	
+	// Destroy the session
+}
+
+
+if(isset($_GET['logoff']))
+{
+	$_SESSION = array();
+	session_destroy();
+	
+	header("Location: demo.php");
+	exit;
+}
+
+if($_POST['submit']=='Login')
+{
+	// Checking whether the Login form has been submitted
+	
+	$err = array();
+	// Will hold our errors
+	
+	
+	if(!$_POST['username'] || !$_POST['password'])
+		$err[] = 'All the fields must be filled in!';
+	
+	if(!count($err))
+	{
+		$_POST['username'] = mysql_real_escape_string($_POST['username']);
+		$_POST['password'] = mysql_real_escape_string($_POST['password']);
+		$_POST['rememberMe'] = (int)$_POST['rememberMe'];
+		
+		// Escaping all input data
+
+		$row = mysql_fetch_assoc(mysql_query("SELECT id,email FROM users WHERE email='{$_POST['username']}' AND encrypted_password='".md5($_POST['password'])."'"));
+
+		if($row['usr'])
+		{
+			// If everything is OK login
+			
+			$_SESSION['usr']=$row['usr'];
+			$_SESSION['id'] = $row['id'];
+			$_SESSION['rememberMe'] = $_POST['rememberMe'];
+			
+			// Store some data in the session
+			
+			setcookie('tzRemember',$_POST['rememberMe']);
+		}
+		else $err[]='Wrong username and/or password!';
+	}
+	
+	if($err)
+	$_SESSION['msg']['login-err'] = implode('<br />',$err);
+	// Save the error messages in the session
+
+	header("Location: demo.php");
+	exit;
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
     <?php
         include 'php/html_partials.php';
         echo OpenHTMLDefaultApplication("Login");
+        echo openGenNavBarHome();
+    ?>
+
+    <!-- Custom internals to nav bar, dependent on presence of session id -->
+    <?php if(!isset($_SESSION["id"])): // If you are not logged in ?>
+
+        <li> <a href="register.php" class="smoothScroll"> Register</a></li>
+
+    <?php else: //if user is logged in ?>
+      <li> <a href="profile.php" class="smoothScroll">Profile</a></li>
+      <li> <a href="add_driver.php" class="smoothScroll"> Add Driver</a></li>
+      <li class="divider"></li>
+      <li> <a href="clear_sessions.php" class="smoothScroll"> Log Out</a></li>
+    <!-- Generic function for closing the nav bar -->
+
+    <?php 
+    endif; 
+    echo closeNavBar();
     ?>
 
 
+<form class="clearfix" action="" method="post">
 
-      <form method="post" action="index.html">
-      	<div class="row">
-  			<div class="col-md-6 col-md-offset-3">
-  					<div class="title-action">
-					<h1>Login</h1>
-					</div> 
+<?php
 
-  				<div class="form-group">
-		        <p><input type="text" name="login" value="" placeholder="Username or Email"></p>
-		    	</div>
+if($_SESSION['msg']['reg-err'])
+{
+	echo '<div class="err">'.$_SESSION['msg']['reg-err'].'</div>';
+	unset($_SESSION['msg']['reg-err']);
+	// This will output the registration errors, if any
+}
 
-		    	<div class="form-group">
-		        <p><input type="password" name="password" value="" placeholder="Password"></p>
-		    	</div>
+if($_SESSION['msg']['reg-success'])
+{
+	echo '<div class="success">'.$_SESSION['msg']['reg-success'].'</div>';
+	unset($_SESSION['msg']['reg-success']);
+	// This will output the registration success message
+}
 
-		        <p class="remember_me">
-		          <label>
-		            <input type="checkbox" name="remember_me" id="remember_me">
-		            Remember me on this computer
-		          </label>
-		        </p>
-
-		        <div class="form-group">
-		        <input  class ="btn btn-primary" type="submit" name="commit" value="Login">
-		        </div>
-
-		      </form>
-		    
-    		<p>New to NUSRiders?  <a href="/signup.php">Sign up now.</a></p>
-		  </div>
-		</div>
+?>
 
 
-		<div class="row">
-  <div class="col-md-6 col-md-offset-5">
-    <div class="ss-belt center">
-    	<a href="/Facebook"
-    		<img src="assets/images/facebook-icon.png", alt= "Facebook Login", height="50", width="50", class="ss-icon", id="fb-auth">
-    	</a>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
 
-    	<a href="/Google"
-    		<img src="assets/images/googleicon.png", alt= "Google Login", height="50", width="50", class="ss-icon", id="go-auth">
-    	</a>
+  	<div class="title-action">
+		<h1>Member Login</h1>
+		</div> 
 
-    	<a href="/LinkedIn"
-    		<img src="assets/images/linkedin-icon.png", alt= "LinkedIn Login", height="50", width="50", class="ss-icon", id="ln-auth">
-    	</a>
+
+    <div class="form-group">
+      <label class="grey" for="username">Username:</label>
+			<input class="field" type="text" name="username" id="username" value="" />
     </div>
+     
+    
+      <div class="form-group">
+				<label class="grey" for="password">Password:</label>
+				<input class="field" type="password" name="password" id="password"  />
+				<label><input name="rememberMe" id="rememberMe" type="checkbox" checked="checked" value="1" /> Remember me</label>
+      </div>
+    
+    <div class="form-group">
+      <input type="submit" name="submit" value="Login" class="bt_login btn btn-primary" />
+    </div>
+
+
+    <p>New to NUS-Riders? <a href="register.php"> register here</a>  </p>
+
   </div>
 </div>
 
+</form>
 
-	<?php
-		echo closeHTMLDefaultApplication();
-	?>
+<?php
+define('INCLUDE_CHECK',true);
 
-</html>
+require 'php/connect.php';
+require 'functions.php';
+
+// Those two files can be included only if INCLUDE_CHECK is defined
+
+session_name('tzLogin');
+// Starting the session
+
+session_set_cookie_params(2*7*24*60*60);
+// Making the cookie live for 2 weeks
+
+session_start();
+
+if($_SESSION['id'] && !isset($_COOKIE['tzRemember']) && !$_SESSION['rememberMe'])
+{
+	// If you are logged in, but you don't have the tzRemember cookie (browser restart)
+	// and you have not checked the rememberMe checkbox:
+
+	$_SESSION = array();
+	session_destroy();
+
+	// Destroy the session
+}
+
+if(isset($_GET['logoff']))
+{
+	$_SESSION = array();
+	session_destroy();
+	header("Location: demo.php");
+	exit;
+}
+
+if($_POST['submit']=='Login')
+{
+	// Checking whether the Login form has been submitted
+
+	$err = array();
+	// Will hold our errors
+
+	if(!$_POST['username'] || !$_POST['password'])
+		$err[] = 'All the fields must be filled in!';
+
+	if(!count($err))
+	{
+		$_POST['username'] = mysql_real_escape_string($_POST['username']);
+		$_POST['password'] = mysql_real_escape_string($_POST['password']);
+		$_POST['rememberMe'] = (int)$_POST['rememberMe'];
+
+		// Escaping all input data
+
+		$row = mysql_fetch_assoc(mysql_query("SELECT id,usr FROM tz_members WHERE usr='{$_POST['username']}' AND pass='".md5($_POST['password'])."'"));
+
+		if($row['usr'])
+		{
+			// If everything is OK login
+
+			$_SESSION['usr']=$row['usr'];
+			$_SESSION['id'] = $row['id'];
+			$_SESSION['rememberMe'] = $_POST['rememberMe'];
+
+			// Store some data in the session
+
+			setcookie('tzRemember',$_POST['rememberMe']);
+			// We create the tzRemember cookie
+		}
+		else $err[]='Wrong username and/or password!';
+	}
+
+	if($err)
+		$_SESSION['msg']['login-err'] = implode('<br />',$err);
+		// Save the error messages in the session
+
+	header("Location: demo.php");
+	exit;
+} ?>

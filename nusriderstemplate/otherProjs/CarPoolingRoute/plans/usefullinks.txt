@@ -1,7 +1,0 @@
-
-    http://www.w3schools.com/php/php_ajax_php.asp
-    https://developers.google.com/places/place-id
-    https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-directions
-    https://developers.google.com/maps/documentation/javascript/examples/marker-remove
-    https://flatuicolors.com/
-    https://developers.google.com/maps/tutorials/fundamentals/adding-a-google-map
