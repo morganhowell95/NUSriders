@@ -3,11 +3,11 @@
 define('INCLUDE_CHECK',true);
 
 require 'php/connect.php';
-require 'functions.php';
+require 'php/functions.php';
 // Those two files can be included only if INCLUDE_CHECK is defined
 
 
-session_name('NUSRidersLogin');
+session_name('NUSRiders');
 // Starting the session
 
 session_set_cookie_params(2*7*24*60*60);
@@ -15,20 +15,25 @@ session_set_cookie_params(2*7*24*60*60);
 
 session_start();
 
-if($_SESSION['id'] && !isset($_COOKIE['tzRemember']) && !$_SESSION['rememberMe'])
-{
-	// If you are logged in, but you don't have the tzRemember cookie (browser restart)
-	// and you have not checked the rememberMe checkbox:
+// if($_SESSION['id'] && !isset($_COOKIE['NUSRiders']) && !$_SESSION['rememberMe'])
+// {
+// 	// If you are logged in, but you don't have the NUSRiders cookie (browser restart)
+// 	// and you have not checked the rememberMe checkbox:
 
-	$_SESSION = array();
-	session_destroy();
-	
-	// Destroy the session
+// 	$_SESSION = array();
+// 	session_destroy();
+// 	// Destroy the session
+// }
+
+if(empty($_POST))
+{
+	echo "GET ISSUED";
+	GETTEDIT;
 }
-
-
-if($_POST['submit']=='Register')
+elseif($_POST['submit']=='Register')
 {
+	echo "POST ISSUED";
+	POSTEDIT;
 	// If the Register form has been submitted
 	
 	$err = array();
@@ -46,38 +51,44 @@ if($_POST['submit']=='Register')
 	if(!count($err))
 	{
 		//Escape the input data to avoid SQL injection, using md5 to hash password
-		$_POST['email'] = pg_escape_string($_POST['email']);
 		$_POST['username'] = pg_escape_string($_POST['username']);
-		$_POST['first_name'] = pg_escape_string($_POST['first_name']);
-		$_POST['last_name'] = pg_escape_string($_POST['last_name']);
+		$_POST['first-name'] = pg_escape_string($_POST['first-name']);
+		$_POST['last-name'] = pg_escape_string($_POST['last-name']);
 		$pass = pg_escape_string($_POST['password']);
-		$isDriver = ($_POST['driver']=='1' ? true : false);
+		$isDriver = (!empty($_POST['driver']) ? 'true' : 'false');
 	
-		pg_query("	INSERT INTO users(email, first_name, last_name, driver, rider, encrypted_password, regIP)
+		$result = pg_query("	INSERT INTO users(email, first_name, last_name, driver, encrypted_password, regIP, last_sign_in_at)
 						VALUES(
 							'".$_POST['username']."',
-							'".$_POST['first_name']."',
-							'".$_POST['last_name']."',
-							'".$_POST['driver']."',
+							'".$_POST['first-name']."',
+							'".$_POST['last-name']."',
+							'".$isDriver."',
 							'".md5($pass)."',
 							'".$_SERVER['REMOTE_ADDR']."',
-							NOW()
+							'".date("Y-m-d H:i:s")."'
 						)");
-		
-		if(pg_affected_rows($link)==1)
+
+		if(pg_affected_rows($result)==1)
 		{
-			$_SESSION['msg']['reg-success']='We sent you an email with your new password!';
+			$_SESSION['msg']['reg-success']='Congratulations on making a new account!';
 		}
-		else $err[]='This username is already taken!';
+		else
+		{
+			$err[]='This username is already taken!';
+		} 
 	}
 
 	if(count($err))
 	{
 		$_SESSION['msg']['reg-err'] = implode('<br />',$err);
+		header("Location: register.php");
 	}	
-	
-	header("Location: index.php");
-	exit;
+	else 
+	{
+		header("Location: index.php");
+	}
+
+	exit();
 }
 
 ?>
@@ -114,17 +125,17 @@ if($_POST['submit']=='Register')
 
 <?php
 
-if(!unset($_SESSION['msg']['reg-err']))
+if(isset($_SESSION['msg']['reg-err']))
 {
-	echo '<div class="err">'.$_SESSION['msg']['reg-err'].'</div>';
+	echo '<div class="alert alert-danger">'.$_SESSION['msg']['reg-err'].'</div>';
 	unset($_SESSION['msg']['reg-err']);
 	// This will output the registration errors, if any
 }
 
-if(!unset($_SESSION['msg']['reg-success'])
+if(isset($_SESSION['msg']['reg-success']))
 {
 	echo '<div class="success">'.$_SESSION['msg']['reg-success'].'</div>';
-	unset($_SESSION['msg']['reg-success']);
+	//unset($_SESSION['msg']['reg-success']);
 	// This will output the registration success message
 }
 
@@ -156,7 +167,7 @@ if(!unset($_SESSION['msg']['reg-success'])
       <div class="form-group">
 				<label class="grey" for="password">Password:</label>
 				<input class="field" type="password" name="password" id="password"  />
-				<label><input name="driver" id="driver" type="checkbox" value="0" /> Are you a Driver?</label>
+				<label><input name="driver" id="driver" type="checkbox" value="1" /> Are you a Driver?</label>
       </div>
     
     <div class="form-group">

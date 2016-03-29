@@ -2,7 +2,7 @@
 
 define('INCLUDE_CHECK',true);
 
-require 'connect.php';
+require 'php/connect.php';
 require 'functions.php';
 // Those two files can be included only if INCLUDE_CHECK is defined
 

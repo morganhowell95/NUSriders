@@ -9,6 +9,10 @@
 
     <!-- enable sessions -->
     <?php
+        session_name('NUSRiders');
+        // Starting the session
+        session_set_cookie_params(2*7*24*60*60);
+        // Making the cookie live for 2 weeks
         session_start();
     ?>
 
@@ -27,6 +31,23 @@
     <?php 
     endif; 
     echo closeNavBar();
+    ?>
+
+    <!-- ====== SUCCESS/ERROR MESSAGES =============!-->
+    <?php
+        if(isset($_SESSION['msg']['reg-err']))
+        {
+            echo '<div class="alert alert-danger">'.$_SESSION['msg']['reg-err'].'</div>';
+            unset($_SESSION['msg']['reg-err']);
+            // This will output the registration errors, if any
+        }
+
+        if(isset($_SESSION['msg']['reg-success']))
+        {
+            echo '<div class="alert alert-success">'.$_SESSION['msg']['reg-success'].'</div>';
+            unset($_SESSION['msg']['reg-success']);
+            // This will output the registration success message
+        }
     ?>
 
     <!-- ==== HEADERWRAP ==== -->
@@ -92,6 +113,8 @@
 <?php
     require_once 'php/html_partials.php';
     echo closeHTMLDefaultApplication();
+    //exit sessions
+    exit();
 ?>
 
 </html>

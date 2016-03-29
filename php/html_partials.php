@@ -13,7 +13,7 @@
 		/* add global css imports here */
 		$css = '
 				<link href="assets/css/main.css" rel="stylesheet">
-				<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 				<link href="assets/css/dashboard.css" rel="stylesheet">
 				<link href="assets/css/animate-custom.css" rel="stylesheet">
 				<link href="assets/css/icomoon.css" rel="stylesheet">
