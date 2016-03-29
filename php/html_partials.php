@@ -1,6 +1,6 @@
 <?php
 
-	function OpenHTMLDefaultApplication($title, $body=NULL) {
+	function OpenHTMLDefaultApplication($title, $body=NULL, $cssadd=NULL, $jsadd=NULL) {
 		$wrap = "";
 		$head = "<head> \n <title>" . $title . "</title>";
 		$meta = "	<meta charset='utf-8'>
@@ -10,18 +10,19 @@
 		            <meta name='description' content=''>
 		            <meta name='author' content=''>";
 
-		/* add global css imports here */
+		/* CSS MANIFEST: add global css imports here */
 		$css = '
 				<link href="assets/css/main.css" rel="stylesheet">
 				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 				<link href="assets/css/dashboard.css" rel="stylesheet">
 				<link href="assets/css/animate-custom.css" rel="stylesheet">
 				<link href="assets/css/icomoon.css" rel="stylesheet">
-				<link href="assets/css/scaffolds.scss" rel="stylesheet">
-				
-		';
+  			<link href="assets/css/layout.css" type="text/css" rel="stylesheet"/>
+  			<link href="assets/css/field.css" type="text/css" rel="stylesheet"/>
+  			<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+		' . $cssadd;
 
-		/* add global javascript imports here */
+		/* JS MANIFEST: add global javascript imports here */
 		$javascripts = '
 		       	<script src="https://code.jquery.com/jquery-2.2.2.min.js"> </script>
 						<script src="assets/javascripts/interact.js"></script>
@@ -32,8 +33,7 @@
 						<script src="assets/javascripts/smoothscroll.js"></script>
 						<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 						<script src="assets/javascripts/dropdown.js"></script>
-
-		';
+		'. $jsadd;
 
 		$shim = '<!--[if lt IE 9]>
 				<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
