@@ -5,23 +5,44 @@
     	//css and js files
       include 'php/html_partials.php';
       echo OpenHTMLDefaultApplication("Login", NULL,
-      	'<link href="assets/css/login.css" type="text/css" rel="stylesheet"/>',
+      	'<link href="assets/css/login.css" type="text/css" rel="stylesheet"/>
+      	 <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+      	 <link href="assets/css/layout.css" type="text/css" rel="stylesheet"/>
+  			 <link href="assets/css/field.css" type="text/css" rel="stylesheet"/>
+      	',
       	'<script src="assets/javascripts/login.js"></script>');
-      echo openGenNavBarHome();
+      echo genNavBar();
     ?>
 
      <!-- Custom internals to nav bar, dependent on presence of session id -->
     <?php if(!isset($_SESSION["id"])): // If you are not logged in ?>
 
-        <li> <a href="register.php" class="smoothScroll"> Register</a></li>
+
 
     <?php else: //if user is logged in ?>
-      <li> <a href="profile.php" class="smoothScroll">Profile</a></li>
-      <li> <a href="add_driver.php" class="smoothScroll"> Add Driver</a></li>
-      <li class="divider"></li>
-      <li> <a href="clear_sessions.php" class="smoothScroll"> Log Out</a></li>
-    <!-- Generic function for closing the nav bar -->
-
+         <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Account <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li> 
+                	<a href="#">
+                		My Profile
+            			</a>
+          			</li>
+                <li>
+                	<a href="#">
+                		Settings
+            			</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                	 <a href="#">
+                		Log Out
+            			</a>
+                </li>
+            </ul>
+        </li>
     <?php 
     endif; 
     echo closeNavBar();
@@ -51,15 +72,15 @@
 
 	        <input class="input hidden login-field" type="text" name="first-name" placeholder="First Name"/>
 	        <input class="input hidden login-field" type="text" name="last-name" placeholder="Last Name"/>
-	        <input class="input" type="email" name="email" placeholder="Email" required />
+	        <input class="input" type="email" name="username" placeholder="Email" required />
 	        <input class="input" type="password" name="password" placeholder="Password" required />
 	        <input class="input hidden login-field" type="password" name="confirmed-password" placeholder="Confirm Password"/>
 
 	      </div>
 	      <div id="loginBox-error">
-	        <?php if(isset($_SESSION['msg'])) echo $_SESSION['msg']; ?>
+	        <?php if(isset($_SESSION['msg']['reg-err'])) echo $_SESSION['msg']['reg-err']; ?>
 	      </div>
-	      <input id="loginBox-button" type="submit" name="submit" value="Login &#9658;"/>
+	     <strong> <input id="loginBox-button" type="submit" name="submit" value="Login"/> </strong>
 	    </form>
 	    <div id="forget-pass" class="loginBox-text">forget password?</div>
 	    <div id="reglogToggle" class="loginBox-text" data-login="true">Register</div>

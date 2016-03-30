@@ -22,12 +22,29 @@
         <li> <a href="login.php" class="smoothScroll"> Login</a></li>
 
     <?php else: //if user is logged in ?>
-      <li> <a href="profile.php" class="smoothScroll">Profile</a></li>
-      <li> <a href="add_driver.php" class="smoothScroll"> Add Driver</a></li>
-      <li class="divider"></li>
-      <li> <a href="clear_sessions.php" class="smoothScroll"> Log Out</a></li>
-    <!-- Generic function for closing the nav bar -->
-
+         <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Account <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li> 
+                    <a href="#">
+                        My Profile
+                    </a>
+                    </li>
+                <li>
+                    <a href="#">
+                        Settings
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                     <a href="#">
+                        Log Out
+                    </a>
+                </li>
+            </ul>
+        </li>
     <?php 
     endif; 
     echo closeNavBar();

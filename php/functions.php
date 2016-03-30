@@ -1,6 +1,7 @@
 <?php
 
-if(!defined('INCLUDE_CHECK')) die('You are not allowed to execute this file directly');
+require_once 'User.php';
+require_once 'connect.php';
 
 function checkEmail($str)
 {
@@ -20,4 +21,32 @@ function send_mail($from,$to,$subject,$body)
 
 	mail($to,$subject,$body,$headers);
 }
+
+function current_user($email=NULL, $password=NULL, $cookieID=NULL) {
+	//If no parameters are passed, attempt to construct user from browser cooke
+	if(is_null($email) && is_null($password) && is_null($cookieID)) {
+
+	} elseif(!is_null($password) && !is_null($email)) {
+		$hashed_pass = md5(strip($password));
+		$email = strip($email);
+		$single_row = pg_query("SELECT * FROM users
+														WHERE email = '{$email}'
+														AND encrypted_password = '{$hashed_pass}';");
+		if(pg_num_rows($single_row) == 1) {
+			return $single_row;
+		} else {
+			return NULL;
+		}
+	}
+
+}
+
+/*
+Remove characters to prevent sql injection
+@param  txt:String  raw string to process
+*/
+function strip($txt) {
+  return pg_escape_string(stripslashes(strip_tags($txt)));
+}
+
 ?>

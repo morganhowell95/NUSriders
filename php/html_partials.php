@@ -17,22 +17,17 @@
 				<link href="assets/css/dashboard.css" rel="stylesheet">
 				<link href="assets/css/animate-custom.css" rel="stylesheet">
 				<link href="assets/css/icomoon.css" rel="stylesheet">
-  			<link href="assets/css/layout.css" type="text/css" rel="stylesheet"/>
-  			<link href="assets/css/field.css" type="text/css" rel="stylesheet"/>
-  			<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
 		' . $cssadd;
 
 		/* JS MANIFEST: add global javascript imports here */
 		$javascripts = '
-		       	<script src="https://code.jquery.com/jquery-2.2.2.min.js"> </script>
-						<script src="assets/javascripts/interact.js"></script>
+						<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 						<script src="assets/javascripts/jquery.easing.1.3.js"></script>
 						<script src="assets/javascripts/jquery-func.js"></script>
 						<script src="assets/javascripts/modernizr.custom.js"></script>
 						<script src="assets/javascripts/retina.js"></script>
 						<script src="assets/javascripts/smoothscroll.js"></script>
-						<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-						<script src="assets/javascripts/dropdown.js"></script>
+						<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>						<script src="assets/javascripts/interact.js"></script>
 		'. $jsadd;
 
 		$shim = '<!--[if lt IE 9]>
@@ -69,13 +64,9 @@
 		        </div>
 		        <div class="navbar-collapse collapse">
 		          <ul class="nav navbar-nav">
-		            <li><a href="/#home" class="smoothScroll">Home</a></li>
-					<li> <a href="/#about" class="smoothScroll"> About</a></li>
-					<li> <a href="/#make-location" class="smoothScroll"> Contact</a></li>
-		        </div><!--/.nav-collapse -->
-		      </div>
-		    </div>
-		    </div>
+		            <li><a href="index.php" class="smoothScroll">Home</a></li>
+					<li> <a href="index.php#about" class="smoothScroll"> About</a></li>
+					<li> <a href="index.php#make-location" class="smoothScroll"> Contact</a></li>
 			';
 		return $navbar;
 	}
@@ -95,8 +86,8 @@
 		        <div class="navbar-collapse collapse">
 		          <ul class="nav navbar-nav">
 		            <li><a href="#home" class="smoothScroll">Home</a></li>
-					<li> <a href="#about" class="smoothScroll"> About</a></li>
-					<li> <a href="#make-location" class="smoothScroll"> Contact</a></li>
+					<li> <a href="/#about" class="smoothScroll"> About</a></li>
+					<li> <a href="/#make-location" class="smoothScroll"> Contact</a></li>
 			';
 		return $navbar;
 	}
