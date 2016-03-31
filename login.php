@@ -1,31 +1,13 @@
 <?php
-
-define('INCLUDE_CHECK',true);
-
 require 'php/connect.php';
 require 'php/functions.php';
 
 
-// Those two files can be included only if INCLUDE_CHECK is defined
-
-
 session_name('NUSRiders');
 // Starting the session
-
 session_set_cookie_params(2*7*24*60*60);
 // Making the cookie live for 2 weeks
-
 session_start();
-
-// if($_SESSION['id'] && !isset($_COOKIE['NUSRiders']) && !$_SESSION['rememberMe'])
-// {
-// 	// If you are logged in, but you don't have the NUSRiders cookie (browser restart)
-// 	// and you have not checked the rememberMe checkbox:
-
-// 	$_SESSION = array();
-// 	session_destroy();
-// 	// Destroy the session
-// }
 
 if(empty($_POST))
 {
@@ -101,8 +83,8 @@ if(empty($_POST))
 		if(is_null($user)) {
 			$err[] = 'Username/Password is incorrect!';
 		} else {
+			set_authenticated_cookie($user);
 			$_SESSION['msg']['reg-success']="Welcome back {$user->firstName}!";
-			//TODO: set cookie and sessions to this user
 		}
 
 		if(count($err)) {
@@ -115,5 +97,6 @@ if(empty($_POST))
 
 
 }
+//must render template after headers are set
 include 'views/login.php';
 ?>

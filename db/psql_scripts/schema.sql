@@ -5,8 +5,6 @@ first_name text NOT NULL DEFAULT '',
 last_name text NOT NULL DEFAULT '',
 currency_amount money NOT NULL DEFAULT 0,
 admin boolean NOT NULL DEFAULT false,
-driver boolean NOT NULL,
-rider boolean NOT NULL,
 regIP varchar(15) NOT NULL DEFAULT '',
 encrypted_password varchar(64) NOT NULL DEFAULT '',
 sign_in_count integer NOT NULL DEFAULT 1,
@@ -14,10 +12,11 @@ last_sign_in_at date,
 prof_pic text
 );
 
+/*TODO: MAKE USER_SESSION_ID UNIQUE*/
 /* Users may register multiple sessions that hold arbitrary amounts of data */
 CREATE TABLE sessions (
 	id bigint REFERENCES users ON DELETE CASCADE,
-	user_session_number integer NOT NULL DEFAULT 1,
+	user_session_id text NOT NULL UNIQUE,
 	data text,
 	created_at date,
 	updated_at date,

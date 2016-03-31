@@ -3,6 +3,7 @@
 
     <?php
         include 'php/html_partials.php';
+        include 'php/functions.php';
         echo OpenHTMLDefaultApplication("Home");
         echo openGenNavBarHome();
     ?>
@@ -16,12 +17,13 @@
         session_start();
     ?>
 
-    <!-- Custom internals to nav bar, dependent on presence of session id -->
-    <?php if(!isset($_SESSION["id"])): // If you are not logged in ?>
+    <!-- Custom internals to nav bar, dependent on presence of remembered user -->
+    <?php if(is_null(current_user())): // If you are not logged in ?>
 
         <li> <a href="login.php" class="smoothScroll"> Login</a></li>
 
-    <?php else: //if user is logged in ?>
+    <?php else: //if user is logged in  ?>
+
          <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Account <b class="caret"></b>
@@ -39,16 +41,18 @@
                 </li>
                 <li class="divider"></li>
                 <li>
-                     <a href="#">
+                     <a href="logout.php">
                         Log Out
                     </a>
                 </li>
             </ul>
         </li>
+
     <?php 
     endif; 
     echo closeNavBar();
     ?>
+
 
     <!-- ====== SUCCESS/ERROR MESSAGES =============!-->
     <?php
