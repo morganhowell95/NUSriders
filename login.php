@@ -74,8 +74,7 @@ if(empty($_POST))
 		if(pg_affected_rows($result)==1)
 		{
 			$_SESSION['msg']['reg-success']='Congratulations on making a new account!';
-		}
-		else
+		} else
 		{
 			$err[] = 'This username is already taken!';
 		} 
@@ -102,13 +101,15 @@ if(empty($_POST))
 		if(is_null($user)) {
 			$err[] = 'Username/Password is incorrect!';
 		} else {
-			$err[] = $user;
+			$_SESSION['msg']['reg-success']="Welcome back {$user->firstName}!";
+			//TODO: set cookie and sessions to this user
 		}
 
 		if(count($err)) {
 			$_SESSION['msg']['reg-err'] = implode('<br />', $err);
 			header("Location: login.php");
 		}	else {
+			unset($_SESSION['msg']['reg-err']);
 			header("Location: index.php");
 		}
 

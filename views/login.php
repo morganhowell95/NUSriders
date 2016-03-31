@@ -55,18 +55,18 @@
     	<?php
     		//FLASH TO USERS RELEVANT SUCCESS/ERROR MESSAGES
 
-					if(isset($_SESSION['msg']['reg-err']))
-					{
-						echo '<div class="alert alert-danger">'.$_SESSION['msg']['reg-err'].'</div>';
-						unset($_SESSION['msg']['reg-err']);
-					}
+					// if(isset($_SESSION['msg']['reg-err']))
+					// {
+					// 	echo '<div class="alert alert-danger">'.$_SESSION['msg']['reg-err'].'</div>';
+					// 	unset($_SESSION['msg']['reg-err']);
+					// }
 
-					if(isset($_SESSION['msg']['reg-success']))
-					{
-						echo '<div class="success">'.$_SESSION['msg']['reg-success'].'</div>';
-						unset($_SESSION['msg']['reg-success']);
-					}
-			?>
+					// if(isset($_SESSION['msg']['reg-success']))
+					// {
+					// 	echo '<div class="success">'.$_SESSION['msg']['reg-success'].'</div>';
+					// 	unset($_SESSION['msg']['reg-success']);
+					// }
+			?> 
 
 	     <div class="loginBox-fields">
 
@@ -78,7 +78,11 @@
 
 	      </div>
 	      <div id="loginBox-error">
-	        <?php if(isset($_SESSION['msg']['reg-err'])) echo $_SESSION['msg']['reg-err']; ?>
+	        <?php 
+            if(isset($_SESSION['msg']['reg-err'])) {
+              echo $_SESSION['msg']['reg-err']; 
+            }
+          ?>
 	      </div>
 	     <strong> <input id="loginBox-button" type="submit" name="submit" value="Login"/> </strong>
 	    </form>
