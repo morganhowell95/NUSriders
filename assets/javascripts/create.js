@@ -4,7 +4,7 @@ function init() {
   var map = GUTIL.makeMap(domMap);
 
   map.btnDom = document.getElementById("createBtn");
-  document.body.removeChild(map.btnDom);
+  document.getElementById("wrap").removeChild(map.btnDom);
   map.noBtn = true;
   map.btnDom.onclick = function() {
     alert(map.A.pobj.place_id + map.A.pobj.geometry.location.lat())
@@ -29,7 +29,7 @@ function init() {
 
   map.A = new Point("A", document.getElementById("pac-input-A"), map);
   map.B = new Point("B", document.getElementById("pac-input-B"), map);
-  // initialize AB points
+  // initialize AB points*/
 }
 function Point(lbl, dom, gMapObj) {
   this.label = lbl;

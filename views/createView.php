@@ -14,7 +14,7 @@
 
   </head>
   <body>
-    <div class = "wrapper">
+    <div class = "wrapper" id = "wrap">
       <div class="box">
         <div id="logout" onclick="location.href='./index.php'">back to home</div>
         <div id="back" onclick="location.href='./search.php'">back to search</div>
