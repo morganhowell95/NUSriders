@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>NUSRiders - <?php echo $_SESSION['pg_username']?></title>
+    <title>NUSRiders - <?php echo $pg_username; ?></title>
     <!-- META -->
     <link href="assets/css/layout.css" type="text/css" rel="stylesheet" />
     <link href="assets/css/cardStyle.css" type="text/css" rel="stylesheet"/>

@@ -15,3 +15,11 @@
   flex-grow: 1;
   margin: 5px;
 }
+#loginBox-error {
+  color: white;
+  width: 100%;
+  padding: 5px 0;
+  margin: 0;
+  text-align: center;
+  background-color: red;
+}

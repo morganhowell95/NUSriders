@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>NUSRiders - Search</title>
+    <title>NUSRiders - Offer</title>
     <!-- META -->
     <link href="assets/css/layout.css" type="text/css" rel="stylesheet" />
     <link href="assets/css/field.css" type="text/css" rel="stylesheet"/>

@@ -57,3 +57,8 @@
 .box > h1 {
   color: #d4cfc6;
 }
+#loginBox-error {
+  margin-bottom: 5px;
+  color: red;
+  text-align: center;
+}

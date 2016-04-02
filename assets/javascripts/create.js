@@ -7,11 +7,14 @@ function init() {
   document.getElementById("wrap").removeChild(map.btnDom);
   map.noBtn = true;
   map.btnDom.onclick = function() {
-    alert(map.A.pobj.place_id + map.A.pobj.geometry.location.lat())
-    //FINALIZE USER SCHEMA
-    //IMPLEMENT ROUTE/PROPOSAL/RIDE SCHEMAS
-    //check if exact route already exists for user
-    //insert route to db
+    window.location.href = "create.php?"+
+    "idA=" + map.A.pobj.place_id +
+    "&latA=" + map.A.pobj.geometry.location.lat() +
+    "&lngA=" + map.A.pobj.geometry.location.lng() +
+    "&idB=" + map.B.pobj.place_id +
+    "&latB=" + map.B.pobj.geometry.location.lat() +
+    "&lngB=" + map.B.pobj.geometry.location.lng();
+    //WARNING: get injection will fck up the DB if placeID and latlng is invalid
   }
   // setup btn
 

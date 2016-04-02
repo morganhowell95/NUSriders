@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>NUSRiders - Search</title>
+    <title>NUSRiders - Create</title>
     <!-- META -->
     <link href="assets/css/layout.css" type="text/css" rel="stylesheet" />
     <link href="assets/css/field.css" type="text/css" rel="stylesheet"/>
@@ -24,6 +24,11 @@
           <input id="pac-input-B" class = "input" type="search" placeholder="To" />
         </div>
       </div>
+      <?php if($errmsg != "") { ?>
+      <div id = "loginBox-error">
+        <?php echo $errmsg; ?>
+      </div>
+      <?php } ?>
       <div id="mapR"></div>
       <div id="createBtn">
         CREATE ROUTE
