@@ -21,16 +21,28 @@
         <h1>OFFER</h1>
       </div>
       <div id="listoffer" class="list"></div>
-      <div id="ofForm">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      <?php if(isset($_GET['err'])) { ?>
+      <div id = "offerBoxError">
+        Invalid input(s) : Cost must be > $0, Capacity > 0, Trip Start > Now
+      </div>
+      <?php } ?>
+      <div class="box" id = "fbox">
+        <input id="f1" class = "input" type="number" min="0.01" step="0.01" placeholder="Cost Per Passenger ($)" />
+        <input id="f2" class = "input" type="number" min="1" step="1" placeholder="Total Passenger Capacity" />
+        <a href="javascript:NewCal('f3','ddmmmyyyy',true,24)">
+          <input id="f3" class="input" type="text" placeholder="Trip Start">
+        </a>
       </div>
       <div id="createBtn">
-        MAKE OFFER
+        CREATE OFFER
       </div>
     </div>
   </body>
+  <script>var rid = <?php echo $rid; ?>;</script>
   <script>var qDat = '<?php echo $dat; ?>';</script>
   <!-- PHP JS transfer -->
+  <script src="http://momentjs.com/downloads/moment.min.js"></script>
+  <script src="assets/javascripts/datetimepicker.js"></script>
   <script src="assets/javascripts/cardList.js"></script>
   <script src="assets/javascripts/googleUtils.js"></script>
   <!-- load libraries -->

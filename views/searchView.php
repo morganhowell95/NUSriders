@@ -21,7 +21,7 @@
           <input id="pac-input-A" class = "input" type="search" placeholder="From" />
           <input id="pac-input-B" class = "input" type="search" placeholder="To" />
           <a href="javascript:NewCal('pac-input-DT','ddmmmyyyy',true,24)">
-            <input id="pac-input-DT" class="input" type="text" placeholder="dd-MMM-yyyy hh:mm:ss">
+            <input id="pac-input-DT" class="input" type="text" placeholder="Trip Start">
           </a>
         </div>
         <div class="profileBtn" onclick="location.href='./user.php?user=<?php echo current_user()->getUserId()?>'">
