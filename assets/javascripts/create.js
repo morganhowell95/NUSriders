@@ -63,7 +63,7 @@ function _pEventCallback(pt) {
       if (status === google.maps.DirectionsStatus.OK) {
         pt.map.directionsDisplay.setDirections(response);
         if(pt.map.noBtn) {
-          document.body.appendChild(pt.map.btnDom);
+          document.getElementById("wrap").appendChild(pt.map.btnDom);
           pt.map.noBtn = false;
         }
       } else {
