@@ -122,7 +122,7 @@ var ASM = {
   makeAddBtnCard : function(label, action) {
     var seg = ASM.makeDiv("btnCard");
     var imgCont = ASM.makeDiv("btnIconIC");
-    imgCont.appendChild(ASM.makeImg("./img/addIcon.png"));
+    imgCont.appendChild(ASM.makeImg("assets/images/addIcon.png"));
     seg.appendChild(imgCont);
     var lbl = ASM.makeDivText("btnLabelCont", label);
     seg.appendChild(lbl);

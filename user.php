@@ -1,42 +1,41 @@
 <?php
-define('INCLUDE_CHECK',true);
+require 'php/pgHeader.php';
 
-session_start();
-
-if($_SESSION['username']) {}else {
-  header("Location: ./index.php");
-}
-// invalid entry without logging in
-
-require '../private/php/connect.php';
+require 'php/connect.php';
 // connect to database
 
-/** email of user's page */
-$email =  $_GET['user'];
-/** email of session user */
-$emlSs =  $_SESSION['email'];
+/** id of user's page */
+$idArg =  $_GET['user'];
+/** id of session user */
+$idSs = current_user()->getUserId();
 
 $row = pg_fetch_assoc(pg_query("
-  SELECT email, username, currency
+  SELECT email, first_name, last_name, currency_amount
   FROM users
-  WHERE email = '{$email}'
+  WHERE id = '{$idArg}'
 "));
-// query if email is valid (not corrupt GET)
-if($row['email']) {
-  $_SESSION['pg_username'] = $row['username'];
-  $_SESSION['pg_currency'] = $row['currency'];
-  $_SESSION['pg_ownself'] = $email == $emlSs;
-  include '../private/templates/userView.php';
-  // generate in pending rides list
-  // (book button if user != username)
-  // (cancel button if user == username)
-  // (show passengers if user == username || admin)
-  // generate past rides list if user == username || admin
+// query if id is valid
 
-//TODO php select 3 different js inits based on GET variable
+if($row) {
+  $pg_username = $row['first_name']. " " . $row['last_name'];
+  $pg_currency = $row['currency_amount'];
+  $pg_ownself = $idArg == $idSs;
+  include 'views/userView.php';
 }else {
-  echo "dier tak de";
-  //TODO goto 404 page
+  echo "<html>
+  <body>
+  invalid
+  </body>
+  </html>";
+  //TODO 404
 }
+/*
+$test = current_user()->isAdmin();
+echo "<html>
+<body>
+<script>alert(".$test.");</script>
+invalid
+</body>
+</html>";*/
 //THERES no transaction detection.... ride complete detection... money transfer business....
 ?>

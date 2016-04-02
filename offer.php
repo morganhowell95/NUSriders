@@ -1,8 +1,5 @@
 <?php
+require 'php/pgHeader.php';
 
-define('INCLUDE_CHECK',true);
-
-session_start();
-
-include '../private/templates/offerView.php';
+include 'views/offerView.php';
 ?>

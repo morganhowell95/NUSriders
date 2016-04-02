@@ -20,7 +20,7 @@ CREATE TABLE sessions (
 	data text,
 	created_at date,
 	updated_at date,
-	PRIMARY KEY (id, user_session_number)
+	PRIMARY KEY (id, user_session_id)
 );
 
 /* User may add multiple auth tokens to be remembered for sign in, including platforms such as:
@@ -34,7 +34,7 @@ CREATE TABLE authentications (
 	PRIMARY KEY (id, uid)
 );
 
-CREATE TABLE ROUTE (
+CREATE TABLE route (
   placeIDA    varchar(28)   NOT NULL,
   placeIDB    varchar(28)   NOT NULL,
   latA        numeric       NOT NULL,
@@ -46,17 +46,16 @@ CREATE TABLE ROUTE (
 );
 /* i didnt check if driverID has driver flag to true */
 
-CREATE TABLE RIDE (
+CREATE TABLE ride (
   startDT     timestamp     NOT NULL,
   cost        money         NOT NULL,
   capacity    smallint      NOT NULL CHECK(capacity > 0),
-  status      smallint      NOT NULL CHECK(status IN (0, 1, 2)),
-  routeID     integer       NOT NULL REFERENCES ROUTE (routeID),
+  routeID     integer       NOT NULL REFERENCES route (routeID),
   rideID      serial        PRIMARY KEY
 );
 
-CREATE TABLE PROPOSAL (
+CREATE TABLE proposal (
   riderID     integer       NOT NULL REFERENCES users (id),
   status      smallint      NOT NULL CHECK(status IN (0, 1, 2)),
-  rideID      integer       NOT NULL REFERENCES RIDE (rideID)
+  rideID      integer       NOT NULL REFERENCES ride (rideID)
 );

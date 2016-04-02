@@ -25,6 +25,7 @@ input:invalid {
   padding: 5px;
   align-self: stretch;
   color: #d4cfc6;
+  background-color: #282520;
 }
 #createBtn:hover {
   padding: 20px;

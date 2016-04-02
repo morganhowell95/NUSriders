@@ -1,6 +1,6 @@
 <?php
 
-//We use this class as an abstraction for our 'user' objects where we can invoke live updates 
+//We use this class as an abstraction for our 'user' objects where we can invoke live updates
 //within the persistent correspondent by simply setting instance variables on user objects returned by
 // 'current_user()' within functions.php
 
@@ -13,23 +13,29 @@ class User {
 	var $lastName;
 	var $email;
 	var $id;
+	var $admin;
 
-	private function __construct($id, $firstName, $lastName, $email) {
+	private function __construct($id, $firstName, $lastName, $email, $admin) {
 		$this->firstName = $firstName;
 		$this->lastName = $lastName;
 		$this->email = $email;
 		$this->id = $id;
+		$this->admin = $admin;
 	}
 
 	//Factory method for generating user objects
-	public static function getInstance($id, $firstName, $lastName, $email) {
+	public static function getInstance($id, $firstName, $lastName, $email, $admin) {
 		if(self::$user == NULL) {
-			$current_user = new User($id, $firstName, $lastName, $email);
+			$current_user = new User($id, $firstName, $lastName, $email, $admin);
 			self::$user = $current_user;
 			return self::$user;
 		} else {
 			return self::$user;
 		}
+	}
+
+	function isAdmin() {
+		return $this->admin;
 	}
 
 	function getUserId() {
@@ -43,7 +49,7 @@ class User {
 	function setFirstName($firstName) {
 		$this->firstName = strip($firstName);
 		$result = pg_query("
-			UPDATE users 
+			UPDATE users
 			SET first_name = '{$this->firstName}'
 			WHERE email = '{$this->email}';");
 	}
@@ -54,7 +60,7 @@ class User {
 
 	function setLastName($lastName) {
 		$this->lastName = $lastName;
-		$result = pg_query(" UPDATE users 
+		$result = pg_query(" UPDATE users
 			SET last_name = '{$this->lastName}'
 			WHERE email = '{$this->email}';");
 	}
@@ -66,14 +72,14 @@ class User {
 	function setEmail($email) {
 		$oldEmail = $this->email;
 		$this->email = $email;
-		$result = pg_query(" UPDATE users 
+		$result = pg_query(" UPDATE users
 			SET email = '{$this->email}'
 			WHERE email = '{$oldEmail}';");
 	}
 
 	function changeEncryptedPassword($password) {
 		$securePassword = md5(strip($password));
-		$result = pg_query(" UPDATE users 
+		$result = pg_query(" UPDATE users
 			SET encrypted_password = '{$securePassword}'
 			WHERE email = '{$this->email}';");
 
@@ -82,7 +88,7 @@ class User {
 	/* Static method for the generation of User objects created by the identification of
 	unique cookie signatures that are stored on the browser */
 	public static function genUserFromCookieID($cookieID) {
-		$single_row = pg_query("SELECT u.id, u.first_name, u.last_name, u.email
+		$single_row = pg_query("SELECT u.id, u.first_name, u.last_name, u.email, u.admin
 												FROM users u, sessions s
 												WHERE u.id = s.id
 												AND s.user_session_id = '{$cookieID}';");
@@ -90,8 +96,8 @@ class User {
 		if(pg_num_rows($single_row) == 1) {
 			//Cast fetched row to an associative array to harvest user info
 			$single_row = pg_fetch_array($single_row, NULL, PGSQL_ASSOC);
-			return User::getInstance($single_row['id'], $single_row['first_name'], 
-				$single_row['last_name'], $single_row['email']);
+			return User::getInstance($single_row['id'], $single_row['first_name'],
+				$single_row['last_name'], $single_row['email'], $single_row['admin']);
 		} else {
 			return NULL;
 		}

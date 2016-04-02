@@ -53,7 +53,7 @@ function current_user($email=NULL, $password=NULL, $cookieID=NULL) {
 		if(pg_num_rows($single_row) == 1) {
 			//Cast fetched row to an associative array to harvest user info
 			$single_row = pg_fetch_array($single_row, NULL, PGSQL_ASSOC);
-			$current_user = User::getInstance($single_row['id'], $single_row['first_name'], $single_row['last_name'], $single_row['email']);
+			$current_user = User::getInstance($single_row['id'], $single_row['first_name'], $single_row['last_name'], $single_row['email'], $single_row['admin']);
 			set_authenticated_cookie($current_user);
 			$GLOBALS['user'] = $current_user;
 			return $current_user;

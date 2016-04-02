@@ -13,23 +13,23 @@
     <!-- STYLES -->
   </head>
   <body>
-    <div class="box">
-      <div id="logout" onclick="location.href='./index.php'">logout</div>
-      <h1>SEARCH</h1>
-      <div class="box-fields">
-        <input id="pac-input-A" class = "input" type="search" placeholder="From" />
-        <input id="pac-input-B" class = "input" type="search" placeholder="To" />
-        <a href="javascript:NewCal('pac-input-DT','ddmmmyyyy',true,24)">
-          <input id="pac-input-DT" class="input" type="text" placeholder="dd-MMM-yyyy hh:mm:ss">
-        </a>
+    <div class = "wrapper">
+      <div class="box">
+        <div id="logout" onclick="location.href='./index.php'">back to home</div>
+        <h1>SEARCH</h1>
+        <div class="box-fields">
+          <input id="pac-input-A" class = "input" type="search" placeholder="From" />
+          <input id="pac-input-B" class = "input" type="search" placeholder="To" />
+          <a href="javascript:NewCal('pac-input-DT','ddmmmyyyy',true,24)">
+            <input id="pac-input-DT" class="input" type="text" placeholder="dd-MMM-yyyy hh:mm:ss">
+          </a>
+        </div>
+        <div class="profileBtn" onclick="location.href='./user.php?user=<?php echo current_user()->getUserId()?>'">
+          <img src="assets/images/userIcon.png" alt="profile" width="25px" height="25px">
+          <?php echo current_user()->getFirstName() ?>
+        </div>
       </div>
-      <div class="profileBtn" onclick="location.href='./user.php?user=<?php echo current_user()->getEmail()?>'">
-        <img src="assets/images/userIcon.png" alt="profile" width="25px" height="25px">
-        <?php echo current_user()->getFirstName() ?>
-      </div>
-    </div>
-    <div id="list" class="list">
-
+      <div id="list" class="list"></div>
     </div>
   </body>
   <script src="assets/javascripts/datetimepicker.js"></script>

@@ -1,19 +1,18 @@
-html, body {
-  padding: 0;
-  margin: 0;
+.hidden {
+  display: none;
 }
-html {
-  height: 100%;
+.wrapper {
   font-family: 'Lato', sans-serif;
-}
-body {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   flex-flow: column;
-  min-height: 100%;
   font-size: 0.8em;
-  background-color: #282520;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 .profileBtn {
   transition: all 0.2s ease;
@@ -48,6 +47,7 @@ body {
   left: 2px;
 }
 .box {
+  background-color: #282520;
   flex-wrap: wrap;
   display: flex;
   align-items: center;

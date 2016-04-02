@@ -1,9 +1,7 @@
-html {
-  background: url('../img/bg.jpg') no-repeat center center fixed;
-  background-size: cover;
-}
 body {
-  justify-content: flex-start;
+  justify-content: center;
+  background: url('../images/bg.jpg') no-repeat center center fixed;
+  background-size: cover;
 }
 .loginBox {
   display: flex;
@@ -52,6 +50,10 @@ input[type="submit"]:hover {
   display: flex;
   justify-content: center;
   margin-bottom: 25px;
+}
+#loginBox-button {
+  width: 100%;
+  text-align: center;
 }
 #loginBox-error {
   margin-bottom: 5px;
