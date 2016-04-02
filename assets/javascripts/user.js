@@ -1,8 +1,5 @@
 function init() {
   var qd = JSON.parse(qDat);
-  for(var i = 0; i < qd.length; i++) {
-    console.log(qd[i]);
-  }
   var list = new List("list");
   switch(tpe) {
     case 10:
