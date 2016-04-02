@@ -1,10 +1,16 @@
 function init() {
+  var qd = JSON.parse(qDat);
+  for(var i = 0; i < qd.length; i++) {
+    console.log(qd[i]);
+  }
   var list = new List("list");
   switch(tpe) {
     case 10:
-      for(var i = 0; i < 4; i++)
+      for(var i = 0; i < qd.length; i++) {
         list.addCard(ASM.ABRoute);
-      //RTP
+        list.cards[i].updateAB(qd[i].placeida, qd[i].placeidb);
+        list.cards[i].segs[2].updateBSeg("offer.php?rid="+qd[i].routeid);
+      }
       list.addSpecialCard(ASM.makeAddRouteBtnCard);
     break;
     case 11:

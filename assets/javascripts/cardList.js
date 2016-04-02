@@ -116,8 +116,7 @@ var ASM = {
     this.clickdata = cdat;
   },
   _BSegClick : function() {
-    alert(this.clickdata);
-    //TODO execute button click based on click data... most likely some function in clickdata
+    window.location.href = this.clickdata;
   },
   makeAddBtnCard : function(label, action) {
     var seg = ASM.makeDiv("btnCard");

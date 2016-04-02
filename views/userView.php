@@ -42,6 +42,7 @@
       <div id="list" class="list"></div>
     </div>
   </body>
+  <script>var qDat = '<?php echo $rows; ?>';</script>
   <?php if(!isset($_GET['pg_view']) || $_GET['pg_view']==1) {
     if($idArg == $idSs) { ?>
     <script>var tpe = 10;</script>
@@ -55,7 +56,7 @@
   <?php }}else if($_GET['pg_view']==3 && $pg_ownself || current_user()->isAdmin()) {?>
     <script>var tpe = 3;</script>
   <?php }else { /*someone GET inject 3 even without permission, go to 404 */} ?>
-  <!-- store pg_view into js -->
+  <!-- PHP JS transfer -->
   <script src="assets/javascripts/googleUtils.js"></script>
   <script src="assets/javascripts/cardList.js"></script>
   <!-- load libraries -->
