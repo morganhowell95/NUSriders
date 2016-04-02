@@ -32,13 +32,25 @@ $query = "";
 if(!isset($_GET['pg_view']) || $_GET['pg_view']==1) {
   if($idArg == $idSs) {
     //10
-    $query = "SELECT * FROM route WHERE driverID = {$idSs};";
+    $query = "SELECT * FROM route WHERE driverID = {$idArg};";
   }else {
     //11
+
   }
 }else if($_GET['pg_view']==2) {
   if($idArg == $idSs) {
     //20
+    $query ="SELECT rd.startDT, rd.cost
+    FROM ride rd, route rt
+    WHERE
+    rt.routeID = rd.routeID AND
+    rt.driverID = {$idArg} AND
+    rt.startDT > NOW() AND
+    rd.capacity > COUNT(
+      SELECT riderID
+      FROM proposal
+      WHERE rideID = rd.rideID)
+    ;";
   }else {
     //21
   }
