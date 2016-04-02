@@ -29,13 +29,5 @@ if($row) {
   </html>";
   //TODO 404
 }
-/*
-$test = current_user()->isAdmin();
-echo "<html>
-<body>
-<script>alert(".$test.");</script>
-invalid
-</body>
-</html>";*/
 //THERES no transaction detection.... ride complete detection... money transfer business....
 ?>
