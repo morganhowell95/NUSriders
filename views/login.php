@@ -20,6 +20,34 @@
 
 
     <?php else: //if user is logged in ?>
+
+    <!-- Ride Management -->
+         <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Ride Management <b class="caret"></b>
+            </a>
+
+            <ul class="dropdown-menu">
+                <li> 
+                  <a href="#">
+                    M
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    Settings
+                  </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                   <a href="#">
+                    Log Out
+                  </a>
+                </li>
+            </ul>
+        </li>
+
+    <!-- Account Settings -->
          <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Account <b class="caret"></b>
@@ -43,6 +71,7 @@
                 </li>
             </ul>
         </li>
+
     <?php 
     endif; 
     echo closeNavBar();

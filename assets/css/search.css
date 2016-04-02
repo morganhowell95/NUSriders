@@ -1,11 +1,25 @@
-body{
-  background-color: #282520;
-  flex-flow: column;
-  justify-content: flex-start;
+.box > h1 {
+  padding-left: 10px;
 }
-.sbox {
-  padding: 10px;
+.box-fields {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  margin: 10px;
 }
-#list {
-  background-color: #a9a08f;
+.box-fields > * {
+  flex-grow: 1;
+  margin: 5px;
+}
+.box-fields > a > .input {
+  width: 100%;
+  margin: 0;
+}
+@media only screen and (max-width: 900px) {
+  .box {
+    flex-flow: column;
+  }
+  .box > h1 {
+    padding-left: 0;
+  }
 }
