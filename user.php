@@ -22,12 +22,34 @@ if($row) {
 }else {
   echo "<html>
   <body>
-  invalid
+  invalids
   </body>
   </html>";
   //TODO 404
 }
-// validate user id from GET
+// validate user id from GET --------------------
+
+if(isset($_GET['cancelid']) && $idArg == $idSs) {
+  $did = pg_fetch_assoc(pg_query(
+  "SELECT rt.driverid
+  FROM route rt, ride rd
+  WHERE rd.rideID = {$_GET['cancelid']}
+  AND rd.routeID = rt.routeID;"))['driverid'];
+  if($did == $idArg) {
+    pg_query(
+    "DELETE FROM ride
+    WHERE rideid = {$_GET['cancelid']};");
+    // delete own offer
+  }else {
+    pg_query(
+    "DELETE FROM proposal
+    WHERE rideid = {$_GET['cancelid']} AND riderid = {$did};");
+    // delete proposal
+  }
+  header("Location: user.php?user=1&pg_view=2");
+}
+// GET cancel a ride ----------------------------
+
 $query = "";
 if(!isset($_GET['pg_view']) || $_GET['pg_view']==1) {
   if($idArg == $idSs) {
@@ -45,10 +67,9 @@ if(!isset($_GET['pg_view']) || $_GET['pg_view']==1) {
     LEFT JOIN route rt ON rt.routeID = rd.routeID
     LEFT JOIN proposal p ON p.rideID = rd.rideID
     LEFT JOIN users u ON u.id = rt.driverID
-    WHERE rt.driverID = {$idArg} OR p.riderID = {$idArg}
+    WHERE rd.startDT > NOW()
     GROUP BY rt.placeIDA, rt.placeIDB, rd.startDT, rd.cost, rt.driverID, u.first_name, u.last_name, rd.capacity, rd.rideID;
     ";
-    //TODO should include rides having user as passenger too
   }else {
     //21
   }
@@ -58,7 +79,7 @@ if(!isset($_GET['pg_view']) || $_GET['pg_view']==1) {
   //TODO 404
 }
 $rows = json_encode(pg_fetch_all(pg_query($query)));
-//THERES no transaction detection.... ride complete detection... money transfer business....
+// load list data -------------------------------
 
 if($row) {
   include 'views/userView.php';

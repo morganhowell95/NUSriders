@@ -3,7 +3,7 @@ id serial PRIMARY KEY,
 email text NOT NULL UNIQUE,
 first_name text NOT NULL DEFAULT '',
 last_name text NOT NULL DEFAULT '',
-currency_amount money NOT NULL DEFAULT 0,
+currency_amount numeric NOT NULL DEFAULT 0,
 admin boolean NOT NULL DEFAULT false,
 regIP varchar(15) NOT NULL DEFAULT '',
 encrypted_password varchar(64) NOT NULL DEFAULT '',
@@ -41,21 +41,19 @@ CREATE TABLE route (
   lngA        numeric       NOT NULL,
   latB        numeric       NOT NULL,
   lngB        numeric       NOT NULL,
-  driverID    integer       NOT NULL REFERENCES users (id),
+  driverID    integer       NOT NULL REFERENCES users (id) ON DELETE CASCADE,
   routeID     serial        PRIMARY KEY
 );
-/* i didnt check if driverID has driver flag to true */
 
 CREATE TABLE ride (
   startDT     timestamp     NOT NULL,
-  cost        money         NOT NULL,
+  cost        numeric       NOT NULL,
   capacity    smallint      NOT NULL CHECK(capacity > 0),
-  routeID     integer       NOT NULL REFERENCES route (routeID),
+  routeID     integer       NOT NULL REFERENCES route (routeID) ON DELETE CASCADE,
   rideID      serial        PRIMARY KEY
 );
 
 CREATE TABLE proposal (
-  riderID     integer       NOT NULL REFERENCES users (id),
-  status      smallint      NOT NULL CHECK(status IN (0, 1, 2)),
-  rideID      integer       NOT NULL REFERENCES ride (rideID)
+  riderID     integer       NOT NULL REFERENCES users (id) ON DELETE CASCADE,
+  rideID      integer       NOT NULL REFERENCES ride (rideID) ON DELETE CASCADE
 );
