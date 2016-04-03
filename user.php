@@ -40,17 +40,16 @@ if(!isset($_GET['pg_view']) || $_GET['pg_view']==1) {
 }else if($_GET['pg_view']==2) {
   if($idArg == $idSs) {
     //20
-    $query ="SELECT rd.startDT, rd.cost
-    FROM ride rd, route rt
-    WHERE
-    rt.routeID = rd.routeID AND
-    rt.driverID = {$idArg} AND
-    rt.startDT > NOW() AND
-    rd.capacity > COUNT(
-      SELECT riderID
-      FROM proposal
-      WHERE rideID = rd.rideID)
-    ;";
+    //$query = "SELECT * FROM route WHERE driverID = {$idArg};";
+
+    $query ="SELECT rt.placeIDA, rt.placeIDB, rd.rideID, rd.startDT, rd.cost, rt.driverID, u.first_name, u.last_name, COUNT(p.riderID) AS passengers, rd.capacity
+    FROM ride rd
+    LEFT JOIN route rt ON rt.routeID = rd.routeID
+    LEFT JOIN proposal p ON p.rideID = rd.rideID
+    LEFT JOIN users u ON u.id = rt.driverID
+    WHERE rt.driverID = {$idArg}
+    GROUP BY rt.placeIDA, rt.placeIDB, rd.startDT, rd.cost, rt.driverID, u.first_name, u.last_name, rd.capacity, rd.rideID;
+    ";
   }else {
     //21
   }

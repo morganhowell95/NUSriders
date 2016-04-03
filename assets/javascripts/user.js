@@ -15,8 +15,17 @@ function init() {
         list.addCard(ASM.AB);
     break;
     case 20:
-      for(var i = 0; i < 4; i++)
+      for(var i = 0; i < qd.length; i++) {
         list.addCard(ASM.ABTripCancel);
+        list.cards[i].updateAB(qd[i].placeida, qd[i].placeidb);
+        list.cards[i].segs[0].updateUSeg(qd[i].first_name + " " + qd[i].last_name, qd[i].driverid);
+        list.cards[i].dseg.rows[2].updateDRSeg(undefined, qd[i].startdt);
+        var capa = parseInt(qd[i].capacity);
+        var pass = parseInt(qd[i].passengers);
+        list.cards[i].dseg.rows[3].updateDRSeg(undefined, (capa - pass) + " seats left out of " + capa);
+        list.cards[i].dseg.rows[4].updateDRSeg(undefined, qd[i].cost);
+        list.cards[i].segs[3].updateBSeg("user.php?user="+uid+"&pg_view=2&cancelid="+qd[i].rideid);
+      }
     break;
     case 21:
       for(var i = 0; i < 4; i++)

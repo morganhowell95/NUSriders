@@ -42,7 +42,10 @@
       <div id="list" class="list"></div>
     </div>
   </body>
-  <script>var qDat = '<?php echo $rows; ?>';</script>
+  <script>
+  var qDat = '<?php echo $rows; ?>';
+  var uid = <?php echo $idArg; ?>;
+  </script>
   <?php if(!isset($_GET['pg_view']) || $_GET['pg_view']==1) {
     if($idArg == $idSs) { ?>
     <script>var tpe = 10;</script>
