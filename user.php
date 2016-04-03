@@ -46,7 +46,7 @@ if(isset($_GET['cancelid']) && $idArg == $idSs) {
     WHERE rideid = {$_GET['cancelid']} AND riderid = {$did};");
     // delete proposal
   }
-  header("Location: user.php?user=1&pg_view=2");
+  header("Location: user.php?user=".current_user()->getUserId()."&pg_view=2");
 }
 // GET cancel a ride ----------------------------
 

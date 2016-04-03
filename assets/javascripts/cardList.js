@@ -134,6 +134,9 @@ var ASM = {
   _AddRouteNav : function() {
     window.location.href = "./create.php";
   },
+  makeTextBox : function() {
+    return ASM.makeDivText("txtBoxCard", "no rides to show, why not book or create one from your routes?");
+  },
   // CARD FACTORY ===============================
   AB : function(card, id) {
     var mseg = ASM.makeMapSegment(id);

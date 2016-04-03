@@ -44,7 +44,7 @@
   </body>
   <script>
   var qDat = '<?php echo $rows; ?>';
-  var uid = <?php echo $idArg; ?>;
+  var uid = <?php echo current_user()->getUserId(); ?>;
   </script>
   <?php if(!isset($_GET['pg_view']) || $_GET['pg_view']==1) {
     if($idArg == $idSs) { ?>

@@ -118,3 +118,8 @@
   /* container */
   opacity: inherit;
 }
+.txtBoxCard {
+  padding: 10px;
+  color: #282520;
+  text-align: center;
+}

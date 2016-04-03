@@ -21,6 +21,7 @@ if($row) {
   // no such route id
 }
 if(isset($_GET['cost'])) {
+
   pg_query("INSERT INTO ride
     VALUES(
       '{$_GET["datetime"]}', '{$_GET["cost"]}',

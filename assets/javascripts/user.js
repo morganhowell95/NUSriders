@@ -23,8 +23,11 @@ function init() {
         var capa = parseInt(qd[i].capacity);
         var pass = parseInt(qd[i].passengers);
         list.cards[i].dseg.rows[3].updateDRSeg(undefined, (capa - pass) + " seats left out of " + capa);
-        list.cards[i].dseg.rows[4].updateDRSeg(undefined, qd[i].cost);
+        list.cards[i].dseg.rows[4].updateDRSeg(undefined, "$"+qd[i].cost);
         list.cards[i].segs[3].updateBSeg("user.php?user="+uid+"&pg_view=2&cancelid="+qd[i].rideid);
+      }
+      if(!qd) {
+        list.addSpecialCard(ASM.makeTextBox);
       }
     break;
     case 21:

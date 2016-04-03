@@ -15,7 +15,7 @@ function init() {
     cost*100 % 1 == 0 && capa % 1 == 0 && cost > 0 && capa > 0) {
       window.location.href =
         'offer.php?rid=' + rid +
-        '&cost=$' + cost +
+        '&cost=' + cost +
         '&capacity=' + capa +
         '&datetime=' + mdt.format("YYYY-MM-DD HH:mm:ss");
     }else {
