@@ -14,9 +14,6 @@ function init() {
   list.cards[2].segs[0].updateUSeg("AHaliq", "haliq@nus.edu.sg");
   // fake data...
 }
-//TODO advertize success will upload advertizement to DB
-//TODO search page should generate cards based on DB
-//TODO user page 20/21 should generate cards based on DB
 //TODO book button should insert proposal to DB
 //TODO cancel button should remove user's proposal from DB
 //TODO or if user is driver, cancel button should remove passengers proposal, and driver's advertizement
