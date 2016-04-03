@@ -47,8 +47,8 @@ CREATE TABLE route (
 
 CREATE TABLE ride (
   startDT     timestamp     NOT NULL,
-  cost        numeric       NOT NULL,
-  capacity    smallint      NOT NULL CHECK(capacity > 0),
+  cost        numeric       NOT NULL CHECK(cost >= 0) 		DEFAULT 0,
+  capacity    smallint      NOT NULL CHECK(capacity > 0) 	DEFAULT 1,
   routeID     integer       NOT NULL REFERENCES route (routeID) ON DELETE CASCADE,
   rideID      serial        PRIMARY KEY
 );
