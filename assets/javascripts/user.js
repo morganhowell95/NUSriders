@@ -30,7 +30,6 @@ function init() {
     case 21:
       for(var i = 0; i < 4; i++)
         list.addCard(ASM.ABTripBook);
-        //TODO implement new schema, fix $ style issues
       //TODO IF CAPACITY IS FULL, make without book button
     break;
     case 3:

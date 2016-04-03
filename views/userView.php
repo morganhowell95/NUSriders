@@ -19,7 +19,7 @@
         <img src="assets/images/userIcon.png" alt="userimg" width="150px" height="150px">
         <h1><?php echo $pg_username ?></h1>
         <?php if($pg_ownself || current_user()->isAdmin())
-          echo "<div id='pbox-curr'>Wallet: ".$pg_currency."</div>";
+          echo "<div id='pbox-curr'>Wallet: $".$pg_currency."</div>";
         ?>
       </div>
       <div id="subnav">
