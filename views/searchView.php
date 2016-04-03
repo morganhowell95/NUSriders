@@ -32,6 +32,8 @@
       <div id="list" class="list"></div>
     </div>
   </body>
+  <script>var qDat = '<?php echo $rows; ?>';</script>
+  <!-- PHP JS transfer -->
   <script src="assets/javascripts/datetimepicker.js"></script>
   <script src="assets/javascripts/cardList.js"></script>
   <script src="assets/javascripts/googleUtils.js"></script>

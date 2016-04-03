@@ -52,29 +52,17 @@ if(isset($_GET['cancelid']) && $idArg == $idSs) {
 
 $query = "";
 if(!isset($_GET['pg_view']) || $_GET['pg_view']==1) {
-  if($idArg == $idSs) {
-    //10
-    $query = "SELECT * FROM route WHERE driverID = {$idArg};";
-  }else {
-    //11
-
-  }
+  $query = "SELECT * FROM route WHERE driverID = {$idArg};";
 }else if($_GET['pg_view']==2) {
-  if($idArg == $idSs) {
-    //20
-    $query ="SELECT rt.placeIDA, rt.placeIDB, rd.rideID, rd.startDT, rd.cost, rt.driverID, u.first_name, u.last_name, COUNT(p.riderID) AS passengers, rd.capacity
-    FROM ride rd
-    LEFT JOIN route rt ON rt.routeID = rd.routeID
-    LEFT JOIN proposal p ON p.rideID = rd.rideID
-    LEFT JOIN users u ON u.id = rt.driverID
-    WHERE rt.driverID = {$idArg} OR p.riderID = {$idArg} AND rd.startDT > NOW()
-    GROUP BY rt.placeIDA, rt.placeIDB, rd.startDT, rd.cost, rt.driverID, u.first_name, u.last_name, rd.capacity, rd.rideID;
-    ";
-    //WARNING NOW() uses time in postgres, if time is not the same as local
-    // machine it will cause errors
-  }else {
-    //21
-  }
+  $query ="SELECT rt.placeIDA, rt.placeIDB, rd.rideID, rd.startDT, rd.cost, rt.driverID, u.first_name, u.last_name, COUNT(p.riderID) AS passengers, rd.capacity
+  FROM ride rd
+  LEFT JOIN route rt ON rt.routeID = rd.routeID
+  LEFT JOIN proposal p ON p.rideID = rd.rideID
+  LEFT JOIN users u ON u.id = rt.driverID
+  WHERE rt.driverID = {$idArg} OR p.riderID = {$idArg} AND rd.startDT > NOW()
+  GROUP BY rt.placeIDA, rt.placeIDB, rd.startDT, rd.cost, rt.driverID, u.first_name, u.last_name, rd.capacity, rd.rideID;";
+  //WARNING NOW() uses time in postgres, if time is not the same as local
+  // machine it will cause errors
 }else if($_GET['pg_view']==3 && $pg_ownself || current_user()->isAdmin()) {
   //3
 }else {
