@@ -6,7 +6,6 @@ function init() {
   list.cards[0].updateAB(qd.placeida, qd.placeidb);
 
   document.getElementById("createBtn").onclick = function() {
-    //TODO window.location('offer.php?rid=rid&cost= &capacity= &datetime=')
     var cost = parseFloat(getVal("f1"));
     var capa = parseInt(getVal("f2"));
     var dt = getVal("f3");

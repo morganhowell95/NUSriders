@@ -197,11 +197,9 @@ var ASM = {
   },
   ABTripBook : function(card, id) {
     ASM.ABTrip(card, id, "Book");
-    //TODO update button BSegClick to execute book query etc.
   },
   ABTripCancel : function(card, id) {
     ASM.ABTrip(card, id, "Cancel");
-    //TODO update button BSegClick to execute cancel query etc.
   },
   ABTripHistory : function(card, id) {
     ASM.ABTrip(card, id);

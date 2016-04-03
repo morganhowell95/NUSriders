@@ -67,9 +67,11 @@ if(!isset($_GET['pg_view']) || $_GET['pg_view']==1) {
     LEFT JOIN route rt ON rt.routeID = rd.routeID
     LEFT JOIN proposal p ON p.rideID = rd.rideID
     LEFT JOIN users u ON u.id = rt.driverID
-    WHERE rd.startDT > NOW()
+    WHERE rt.driverID = {$idArg} OR p.riderID = {$idArg} AND rd.startDT > NOW()
     GROUP BY rt.placeIDA, rt.placeIDB, rd.startDT, rd.cost, rt.driverID, u.first_name, u.last_name, rd.capacity, rd.rideID;
     ";
+    //WARNING NOW() uses time in postgres, if time is not the same as local
+    // machine it will cause errors
   }else {
     //21
   }

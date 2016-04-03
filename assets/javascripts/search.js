@@ -15,7 +15,6 @@ function init() {
   // fake data...
 }
 //TODO book button should insert proposal to DB
-//TODO cancel button should remove user's proposal from DB
 //TODO or if user is driver, cancel button should remove passengers proposal, and driver's advertizement
 //TODO user page 3 should generate cards based on DB of advertizement that has passed currentDT
 //TOCONSIDER there is no transaction, there is no ride complete, there is no currency alteration
