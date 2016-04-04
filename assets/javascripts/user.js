@@ -22,7 +22,7 @@ function init() {
         qd[i].riderids = qd[i].riderids.replace(/[{}]/g, "").split(",");
         for(var j = 0; j < qd[i].riderfnames.length; j++) {
           if(qd[i].riderfnames[j] == "NULL") continue;
-          list.cards[i].addPassenger(qd[i].riderfnames[j]+" "+qd[i].riderlnames[j], qd[i].riderlnames[j]);
+          list.cards[i].addPassenger(qd[i].riderfnames[j]+" "+qd[i].riderlnames[j], qd[i].riderids[j]);
         }
       }
     }

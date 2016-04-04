@@ -18,7 +18,7 @@ $row = pg_fetch_assoc(pg_query("
 if($row) {
   $pg_username = $row['first_name']. " " . $row['last_name'];
   $pg_currency = $row['currency_amount'];
-  $pg_ownself = $idArg == $idSs;
+  $pg_ownself = ($idArg == $idSs);
 }else {
   echo "<html>
   <body>
