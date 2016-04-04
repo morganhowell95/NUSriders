@@ -98,7 +98,7 @@ if(!isset($_GET['pg_view']) || $_GET['pg_view']==1) {
       ARRAY[{$idArg}] <@ ARRAY_AGG(pu.riderID) OR
       rtu.driverID = {$idArg}) ";
   if($_GET['pg_view']==3 && ($pg_ownself || current_user()->isAdmin())) {
-    $query = $query . " AND rd.startDT > NOW()";
+    $query = $query . " AND rd.startDT < NOW()";
   }else {
     $query = $query . " AND rd.startDT > NOW()";
   }
