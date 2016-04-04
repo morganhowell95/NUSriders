@@ -64,8 +64,10 @@ if(!isset($_GET['pg_view']) || $_GET['pg_view']==1) {
     rd.routeID,
     rd.rideID,
     rtu.placeIDA, rtu.placeIDB,
-    COUNT(p.riderID) as passengers,
-    ARRAY_AGG(p.riderID) as riderIDs
+    COUNT(pu.riderID) as passengers,
+    ARRAY_AGG(pu.riderID) as riderIDs,
+    ARRAY_AGG(pu.first_name) as riderfNames,
+    ARRAY_AGG(pu.last_name) as riderlNames
   FROM ride rd
     LEFT JOIN
       (route rt
@@ -75,8 +77,12 @@ if(!isset($_GET['pg_view']) || $_GET['pg_view']==1) {
       ) rtu
     ON rtu.routeID = rd.routeID
     LEFT JOIN
-      proposal p
-    ON p.rideID = rd.rideID
+      (proposal p
+        LEFT JOIN
+          users uu
+        ON uu.id = p.riderID
+      ) pu
+    ON pu.rideID = rd.rideID
   GROUP BY
     rtu.driverID,
     rtu.first_name,
@@ -89,7 +95,7 @@ if(!isset($_GET['pg_view']) || $_GET['pg_view']==1) {
     rtu.placeIDA, rtu.placeIDB
   HAVING
     (
-      ARRAY[{$idArg}] <@ ARRAY_AGG(p.riderID) OR
+      ARRAY[{$idArg}] <@ ARRAY_AGG(pu.riderID) OR
       rtu.driverID = {$idArg}) ";
   if($_GET['pg_view']==3 && ($pg_ownself || current_user()->isAdmin())) {
     $query = $query . " AND rd.startDT > NOW()";
