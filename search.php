@@ -17,7 +17,7 @@ $query = "SELECT
   rd.routeID,
   rd.rideID,
   rtu.placeIDA, rtu.placeIDB,
-  COUNT(p.riderID) as riders,
+  COUNT(p.riderID) as passengers,
   ARRAY_AGG(p.riderID) as riderIDs
 FROM ride rd
   LEFT JOIN
