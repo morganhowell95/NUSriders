@@ -19,13 +19,9 @@ function init() {
   var list = new List("list");
   for(var i = 0; i < qd.length; i++) {
     list.addCard(ASM.ABTripBook);
-    list.cards[i].updateAB(qd[i].placeida, qd[i].placeidb);
-    list.cards[i].segs[0].updateUSeg(qd[i].first_name + " " + qd[i].last_name, qd[i].driverid);
-    list.cards[i].dseg.rows[2].updateDRSeg(undefined, qd[i].startdt);
-    var capa = parseInt(qd[i].capacity);
-    var pass = parseInt(qd[i].passengers);
-    list.cards[i].dseg.rows[3].updateDRSeg(undefined, (capa - pass) + " seats left out of " + capa);
-    list.cards[i].dseg.rows[4].updateDRSeg(undefined, "$"+qd[i].cost);
+    list.cards[i].updateABTQuery(qd[i]);
+    if(uid == qd[i].driverid) list.cards[i].removeSegment(3);
+    else list.cards[i].segs[3].updateBSeg("book.php?pID="+uid+"&rID="+qd[i].rideid);
     //list.cards[i].segs[3].updateBSeg("user.php?user="+uid+"&pg_view=2&cancelid="+qd[i].rideid);
   }
 }
@@ -38,13 +34,13 @@ function refineSearch() {
   var latB = toBox.getPlaces()[0].geometry.location.lat();
   var lngB = toBox.getPlaces()[0].geometry.location.lng();
   var rawDt = dtBox.value;
-  if(rawDt == "") {
-    // no time deviation
-  }else {
+  var navURL = "search.php?latA="+latA+"&lngA="+lngA+"&latB="+latB+"&lngB="+lngB;
+  if(rawDt != "") {
     var dt = moment(rawDt, "DD-MMM-YYYY HH:mm:ss").format("YYYY-MM-DD HH:mm:ss");
+    navURL += "&dt="+dt;
   }
+  window.location.href = navURL;
   // time deviation*/
 }
-//TODO book button should insert proposal to DB
 //TODO user page 3 should generate cards based on DB of advertizement that has passed currentDT
 //TOCONSIDER there is no transaction, there is no ride complete, there is no currency alteration

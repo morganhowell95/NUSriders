@@ -53,18 +53,50 @@ if(isset($_GET['cancelid']) && $idArg == $idSs) {
 $query = "";
 if(!isset($_GET['pg_view']) || $_GET['pg_view']==1) {
   $query = "SELECT * FROM route WHERE driverID = {$idArg};";
-}else if($_GET['pg_view']==2) {
-  $query ="SELECT rt.placeIDA, rt.placeIDB, rd.rideID, rd.startDT, rd.cost, rt.driverID, u.first_name, u.last_name, COUNT(p.riderID) AS passengers, rd.capacity
+}else if($_GET['pg_view'] == 2 || $_GET['pg_view'] == 3) {
+  $query = "SELECT
+    rtu.driverID,
+    rtu.first_name,
+    rtu.last_name,
+    rd.startDT,
+    rd.cost,
+    rd.capacity,
+    rd.routeID,
+    rd.rideID,
+    rtu.placeIDA, rtu.placeIDB,
+    COUNT(p.riderID) as passengers,
+    ARRAY_AGG(p.riderID) as riderIDs
   FROM ride rd
-  LEFT JOIN route rt ON rt.routeID = rd.routeID
-  LEFT JOIN proposal p ON p.rideID = rd.rideID
-  LEFT JOIN users u ON u.id = rt.driverID
-  WHERE rt.driverID = {$idArg} OR p.riderID = {$idArg} AND rd.startDT > NOW()
-  GROUP BY rt.placeIDA, rt.placeIDB, rd.startDT, rd.cost, rt.driverID, u.first_name, u.last_name, rd.capacity, rd.rideID;";
-  //WARNING NOW() uses time in postgres, if time is not the same as local
-  // machine it will cause errors
-}else if($_GET['pg_view']==3 && $pg_ownself || current_user()->isAdmin()) {
-  //3
+    LEFT JOIN
+      (route rt
+        LEFT JOIN
+          users u
+        ON u.id = rt.driverID
+      ) rtu
+    ON rtu.routeID = rd.routeID
+    LEFT JOIN
+      proposal p
+    ON p.rideID = rd.rideID
+  GROUP BY
+    rtu.driverID,
+    rtu.first_name,
+    rtu.last_name,
+    rd.startDT,
+    rd.cost,
+    rd.capacity,
+    rd.routeID,
+    rd.rideID,
+    rtu.placeIDA, rtu.placeIDB
+  HAVING
+    (
+      ARRAY[{$idArg}] <@ ARRAY_AGG(p.riderID) OR
+      rtu.driverID = {$idArg}) ";
+  if($_GET['pg_view']==3 && ($pg_ownself || current_user()->isAdmin())) {
+    $query = $query . " AND rd.startDT > NOW()";
+  }else {
+    $query = $query . " AND rd.startDT > NOW()";
+  }
+  $query = $query . ";";
 }else {
   //TODO 404
 }

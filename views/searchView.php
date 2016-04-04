@@ -33,7 +33,7 @@
     </div>
   </body>
   <script>
-  var oid = <?php echo current_user()-> getUserId(); ?>;
+  var uid = <?php echo current_user()-> getUserId(); ?>;
   var qDat = '<?php echo $rows; ?>';</script>
   <!-- PHP JS transfer -->
   <script src="http://momentjs.com/downloads/moment.min.js"></script>

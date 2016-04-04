@@ -197,6 +197,16 @@ var ASM = {
     for(var i = 0; i< apFl.length; i++)
       card.dseg.makeDataRowSegment(apFl[i]);
     if(label != undefined) card.appendSegment(ASM.makeButtonSegment(label));
+    card.updateABTQuery = ASM._updateABTQuery;
+  },
+  _updateABTQuery : function(qd) {
+    this.updateAB(qd.placeida, qd.placeidb);
+    this.segs[0].updateUSeg(qd.first_name + " " + qd.last_name, qd.driverid);
+    this.dseg.rows[2].updateDRSeg(undefined, qd.startdt);
+    var capa = parseInt(qd.capacity);
+    var pass = parseInt(qd.passengers);
+    this.dseg.rows[3].updateDRSeg(undefined, (capa - pass) + " seats left out of " + capa);
+    this.dseg.rows[4].updateDRSeg(undefined, "$"+qd.cost);
   },
   ABTripBook : function(card, id) {
     ASM.ABTrip(card, id, "Book");

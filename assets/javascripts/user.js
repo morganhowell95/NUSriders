@@ -1,9 +1,10 @@
 function init() {
   var qd = JSON.parse(qDat);
+  console.log(qd);
   var list = new List("list");
   if(tpe == 10 || tpe == 11) {
     for(var i = 0; i < qd.length; i++) {
-      list.addCard(ASM.ABRoute);
+      list.addCard(tpe == 10 ? ASM.ABRoute : ASM.AB);
       list.cards[i].updateAB(qd[i].placeida, qd[i].placeidb);
       if(tpe == 10) list.cards[i].segs[2].updateBSeg("offer.php?rid="+qd[i].routeid);
     }
@@ -11,15 +12,10 @@ function init() {
   }else if(tpe == 20 || tpe == 21) {
     for(var i = 0; i < qd.length; i++) {
       list.addCard(tpe == 20 ? ASM.ABTripCancel : ASM.ABTripBook);
-      list.cards[i].updateAB(qd[i].placeida, qd[i].placeidb);
-      list.cards[i].segs[0].updateUSeg(qd[i].first_name + " " + qd[i].last_name, qd[i].driverid);
-      list.cards[i].dseg.rows[2].updateDRSeg(undefined, qd[i].startdt);
-      var capa = parseInt(qd[i].capacity);
-      var pass = parseInt(qd[i].passengers);
-      list.cards[i].dseg.rows[3].updateDRSeg(undefined, (capa - pass) + " seats left out of " + capa);
-      list.cards[i].dseg.rows[4].updateDRSeg(undefined, "$"+qd[i].cost);
+      list.cards[i].updateABTQuery(qd[i]);
       if(tpe == 20) list.cards[i].segs[3].updateBSeg("user.php?user="+uid+"&pg_view=2&cancelid="+qd[i].rideid);
-      //TODO else booking if full remove last seg
+      else if(uid == qd[i].driverid || qd[i].capacity == qd[i].passengers) list.cards[i].removeSegment(3);
+      else list.cards[i].segs[3].updateBSeg("book.php?pID="+uid+"&rID="+qd[i].rideid);
     }
     if(!qd && tpe == 20) list.addSpecialCard(ASM.makeTextBox);
   }else if(tpe == 3) {
