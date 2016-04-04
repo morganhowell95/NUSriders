@@ -42,5 +42,4 @@ function refineSearch() {
   window.location.href = navURL;
   // time deviation*/
 }
-//TODO user page 3 should generate cards based on DB of advertizement that has passed currentDT
 //TOCONSIDER there is no transaction, there is no ride complete, there is no currency alteration

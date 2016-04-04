@@ -1,6 +1,5 @@
 function init() {
   var qd = JSON.parse(qDat);
-  console.log(qd);
   var list = new List("list");
   if(tpe == 10 || tpe == 11) {
     for(var i = 0; i < qd.length; i++) {

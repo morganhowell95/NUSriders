@@ -32,7 +32,6 @@
 }
 .userIconIC > img:hover {
   opacity: 1;
-  /*TODO for the lulz remove when dp is implemented*/
 }
 .userNameIC{
   margin-left: 7px;

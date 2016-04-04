@@ -20,12 +20,7 @@ if($row) {
   $pg_currency = $row['currency_amount'];
   $pg_ownself = ($idArg == $idSs);
 }else {
-  echo "<html>
-  <body>
-  invalids
-  </body>
-  </html>";
-  //TODO 404
+  header("Location : index.php");
 }
 // validate user id from GET --------------------
 
@@ -104,7 +99,7 @@ if(!isset($_GET['pg_view']) || $_GET['pg_view']==1) {
   }
   $query = $query . ";";
 }else {
-  //TODO 404
+  header("Location : index.php");
 }
 $rows = json_encode(pg_fetch_all(pg_query($query)));
 // load list data -------------------------------
