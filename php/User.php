@@ -4,8 +4,8 @@
 //within the persistent correspondent by simply setting instance variables on user objects returned by
 // 'current_user()' within functions.php
 
-require_once 'connect.php';
-require_once 'functions.php';
+require_once 'php/connect.php';
+require_once 'php/functions.php';
 
 class User {
 	public static $user = NULL;

@@ -55,6 +55,6 @@ CREATE TABLE ride (
 
 CREATE TABLE proposal (
   riderID     integer       NOT NULL REFERENCES users (id) ON DELETE CASCADE,
-  rideID      integer       NOT NULL REFERENCES ride (rideID) ON DELETE CASCADE
+  rideID      integer       NOT NULL REFERENCES ride (rideID) ON DELETE CASCADE,
 	PRIMARY KEY(riderID, rideID)
 );
