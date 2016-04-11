@@ -32,7 +32,7 @@
           class="subnav-btn <?php if($_GET['pg_view']==2) echo "subnav-btn-active"; ?>"
           onclick="location.href='./userprofile.php?user=<?php echo $idArg?>&amp;pg_view=2'">
           PENDING RIDES</div>
-        <?php if($pg_ownself || current_user()->isAdmin()) { ?>
+        <?php if($pg_ownself || current_user()->isAdmin() == true) { ?>
           <div
             class="subnav-btn <?php if($_GET['pg_view']==3) echo "subnav-btn-active"; ?>"
             onclick="location.href='./userprofile.php?user=<?php echo $idArg?>&amp;pg_view=3'">

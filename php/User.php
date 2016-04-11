@@ -35,7 +35,7 @@ class User {
 	}
 
 	function isAdmin() {
-		return $this->admin;
+		return $this->admin == "t";
 	}
 
 	function getUserId() {

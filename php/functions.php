@@ -1,7 +1,7 @@
 <?php
 
-require_once 'User.php';
-require_once 'connect.php';
+require_once 'php/User.php';
+require_once 'php/connect.php';
 
 function checkEmail($str)
 {
