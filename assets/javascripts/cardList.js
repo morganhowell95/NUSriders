@@ -71,7 +71,7 @@ var ASM = {
   _updateUSeg : function(name, email) {
     this._nmeCont.updateTxt(name);
     this.onclick = function() {
-      window.location.href = "./user.php?user="+email;
+      window.location.href = "./userprofile.php?user="+email;
     }
   },
   makeMapSegment : function(mapID) {

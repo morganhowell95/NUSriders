@@ -12,7 +12,7 @@ function init() {
     for(var i = 0; i < qd.length; i++) {
       list.addCard(tpe == 20 ? ASM.ABTripCancel : (tpe == 21 ? ASM.ABTripBook : ASM.ABTripHistory));
       list.cards[i].updateABTQuery(qd[i]);
-      if(tpe == 20) list.cards[i].segs[3].updateBSeg("user.php?user="+uid+"&pg_view=2&cancelid="+qd[i].rideid);
+      if(tpe == 20) list.cards[i].segs[3].updateBSeg("userprofile.php?user="+uid+"&pg_view=2&cancelid="+qd[i].rideid);
       else if(tpe == 21 && (uid == qd[i].driverid || qd[i].capacity == qd[i].passengers)) list.cards[i].removeSegment(3);
       else if(tpe == 21) list.cards[i].segs[3].updateBSeg("book.php?pID="+uid+"&rID="+qd[i].rideid);
       else {

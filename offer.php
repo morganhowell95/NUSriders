@@ -26,7 +26,7 @@ if(isset($_GET['cost'])) {
     VALUES(
       '{$_GET["datetime"]}', '{$_GET["cost"]}',
       '{$_GET["capacity"]}', '{$_GET["rid"]}');");
-  header("Location: user.php?user=".current_user()->getUserId()."&pg_view=2");
+  header("Location: userprofile.php?user=".current_user()->getUserId()."&pg_view=2");
 }
 
 include 'views/offerView.php';

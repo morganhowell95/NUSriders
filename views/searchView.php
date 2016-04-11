@@ -24,7 +24,7 @@
             <input id="pac-input-DT" class="input" type="text" placeholder="Trip Start">
           </a>
         </div>
-        <div class="profileBtn" onclick="location.href='./user.php?user=<?php echo current_user()->getUserId()?>'">
+        <div class="profileBtn" onclick="location.href='./userprofile.php?user=<?php echo current_user()->getUserId()?>'">
           <img src="assets/images/userIcon.png" alt="profile" width="25px" height="25px">
           <?php echo current_user()->getFirstName() ?>
         </div>

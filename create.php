@@ -23,7 +23,7 @@ if(isset($_GET['idA'])) {
         '{$_GET["latA"]}', '{$_GET["lngA"]}',
         '{$_GET["latB"]}', '{$_GET["lngB"]}',
         '{$idSs}');");
-    header("Location: user.php?user=".current_user()->getUserId());
+    header("Location: userprofile.php?user=".current_user()->getUserId());
   }
 }
 include 'views/createView.php';

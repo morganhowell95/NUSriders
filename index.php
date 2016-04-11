@@ -38,7 +38,7 @@
                     </a>
                     </li>
                 <li>
-                    <a href="user.php?user=<?php echo current_user()->getUserId(); ?>">
+                    <a href="userprofile.php?user=<?php echo current_user()->getUserId(); ?>">
                         Manage
                     </a>
                 </li>

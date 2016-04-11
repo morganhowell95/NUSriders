@@ -22,7 +22,7 @@ function init() {
     list.cards[i].updateABTQuery(qd[i]);
     if(uid == qd[i].driverid) list.cards[i].removeSegment(3);
     else list.cards[i].segs[3].updateBSeg("book.php?pID="+uid+"&rID="+qd[i].rideid);
-    //list.cards[i].segs[3].updateBSeg("user.php?user="+uid+"&pg_view=2&cancelid="+qd[i].rideid);
+    //list.cards[i].segs[3].updateBSeg("userprofile.php?user="+uid+"&pg_view=2&cancelid="+qd[i].rideid);
   }
 }
 
