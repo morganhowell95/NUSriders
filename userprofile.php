@@ -30,15 +30,17 @@ if(isset($_GET['cancelid']) && $idArg == $idSs) {
   FROM route rt, ride rd
   WHERE rd.rideID = {$_GET['cancelid']}
   AND rd.routeID = rt.routeID;"))['driverid'];
+  $testz = 0;
   if($did == $idArg) {
+    $testz = 1;
     pg_query(
     "DELETE FROM ride
     WHERE rideid = {$_GET['cancelid']};");
     // delete own offer
   }else {
-    pg_query(
-    "DELETE FROM proposal
-    WHERE rideid = {$_GET['cancelid']} AND riderid = {$did};");
+    $testz = 2;
+    $reszz = pg_query(
+    "DELETE FROM proposal WHERE rideid = {$_GET['cancelid']} AND riderid = {$idSs};");
     // delete proposal
   }
   header("Location: userprofile.php?user=".current_user()->getUserId()."&pg_view=2");

@@ -1,5 +1,4 @@
 SELECT
-  rd.startDT > NOW() as lol,
   rtu.driverID,
   rtu.first_name,
   rtu.last_name,
@@ -41,7 +40,14 @@ COS(RADIANS(rt.lngA) - RADIANS({$_GET['lngA']})) +
 SIN(RADIANS(rt.latA)) * SIN(RADIANS({$_GET['latA']}))))*22.209 +
 DEGREES(ACOS(COS(RADIANS(rt.latB)) * COS(RADIANS({$_GET['latB']})) *
 COS(RADIANS(rt.lngB) - RADIANS({$_GET['lngB']})) +
-SIN(RADIANS(rt.latB)) * SIN(RADIANS({$_GET['latB']}))))*22.209;
-/*
-+  ABS(EXTRACT(EPOCH FROM (rd.startDT-'{$_GET['dt']}'))/3600)
-*/
+SIN(RADIANS(rt.latB)) * SIN(RADIANS({$_GET['latB']}))))*22.209
++  ABS(EXTRACT(EPOCH FROM (rd.startDT-'{$_GET['dt']}'))/3600) ASC;
+
+
+
+
+CREATE TABLE relation (
+  name  VARCHAR NOT NULL,
+  ...
+  attr_n  domain_n
+);
