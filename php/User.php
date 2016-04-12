@@ -4,8 +4,8 @@
 //within the persistent correspondent by simply setting instance variables on user objects returned by
 // 'current_user()' within functions.php
 
-require_once 'php/connect.php';
-require_once 'php/functions.php';
+include_once 'php/connect.php';
+include_once 'php/functions.php';
 
 class User {
 	public static $user = NULL;
@@ -118,12 +118,68 @@ class User {
 		//note that UNIQUE constraint holds on pk(id, user_session_id)
 		$result = pg_query("INSERT INTO sessions(id, user_session_id, data)
 							VALUES ('{$this->id}', '{$sig}', '{$browser_data}');");
+
 		if(pg_affected_rows($result)==1) {
 			return $sig;
 		} else {
 			//recursively make new sessions until unique signature is generated
-			return saveNewSession();
+			//return $this->saveNewSession();
 		}
+	}
+
+	//return true if the email has been taken
+	public static function doesUserExistWithEmail($email) {
+		$result = pg_query("SELECT COUNT(*) FROM users
+												WHERE email = '{$email}';");
+		if ($line = pg_fetch_assoc($result)) {
+    	if($line['count'] == 0) {
+     		return false;
+    	}
+    	else {
+    		return true;
+    	}
+  	}
+	}
+
+	//return true if auth token exists
+	public static function hasUserAuthenticatedInPast($uid, $access_token) {
+		$result = pg_query("SELECT COUNT(*) FROM authentications
+												WHERE uid = '{$uid}'
+												AND token = '{$access_token}';");
+
+		if ($line = pg_fetch_assoc($result)) {
+    	if ($line['rows'] == 0) {
+     		return false;
+    	}
+    	else {
+    		return true;
+    	}
+  	}
+	}
+
+	public static function findIDFromEmail($email) {
+		$row = pg_query("SELECT id FROM users
+											WHERE email = '{$email}';");
+		$row = pg_fetch_array($row, NULL, PGSQL_ASSOC);
+		return $row['id'];
+	}
+
+	public static function fetchAttrWithEmail($email) {
+		$row = pg_query("SELECT first_name, last_name, email 
+										 FROM users
+										 WHERE email = '{$email}';");
+		$row = pg_fetch_array($row, NULL, PGSQL_ASSOC);
+		return $row;
+	}
+
+	public static function addAuthenticationStrategyForUser($email, $platform, $uid, $token) {
+		$userId = User::findIDFromEmail($email);
+		$result = pg_query("INSERT INTO authentications(id, provider, uid, token)
+							VALUES ({$userId},'{$platform}','{$uid}','{$token}');");
+		$user_info = User::fetchAttrWithEmail($email);
+
+		return User::getInstance($userId, $user_info['first_name'], 
+			$user_info['last_name'], $email, false);
 	}
 }
 ?>

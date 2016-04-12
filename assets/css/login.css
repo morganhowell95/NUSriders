@@ -60,3 +60,42 @@ input[type="submit"]:hover {
   color: red;
   text-align: center;
 }
+
+.ss-belt {
+margin-top: 50px;
+padding: 20px 0px 20px 30px;
+background-color: rgba(128,128,128,.5);
+width: 200px;
+height: 80px;
+border-radius: 5px;
+border: solid black 2px;
+margin-bottom: -25px;
+
+}
+
+.ss-belt a {
+  color: transparent;
+  background-color: transparent;
+}
+
+.ss-belt .ss-icon {
+  margin-top: 10px;
+  vertical-align: middle;
+  margin-left: 5px;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  background-color: transparent;
+}
+
+.ss-belt .ss-icon:hover{
+  border-radius: 50%;
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  transform: rotate(360deg);
+  color: transparent;
+}

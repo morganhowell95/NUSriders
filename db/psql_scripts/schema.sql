@@ -31,7 +31,7 @@ CREATE TABLE authentications (
 	uid text UNIQUE,
 	token text,
 	created_at date,
-	PRIMARY KEY (id, uid)
+	PRIMARY KEY (id, uid, token)
 );
 
 CREATE TABLE route (
