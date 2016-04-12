@@ -36,7 +36,33 @@
   	    <div id="forget-pass" class="loginBox-text">forget password?</div>
   	    <div id="reglogToggle" class="loginBox-text" data-login="true">Register</div>
   	  </div>
-    </div>
+    
+    <?php require 'platform_login_strategies.php' ?>
+
+    <!-- Social Media Login Belt -->
+    <div class="row">
+      <div class="col-md-6 col-md-offset-5">
+        <div class="ss-belt center">
+          <!-- Facebook login -->
+        <a href="<?php echo fetchLoginLink('facebook')?>">
+          <img alt="Facebook Login" id="fb-auth" class="ss-icon" src="assets/images/ss-icon/facebook-icon.png" width="50" height="50">
+        </a>
+
+        <!-- Google login -->
+        <a href="http://www.w3schools.com">
+          <img alt="Google Login" id="go-auth" class="ss-icon" src="assets/images/ss-icon/google-icon.png" width="50" height="50">
+        </a>
+
+        <!-- LinkedIn login-->
+        <a href="http://www.w3schools.com">
+          <img alt="LinkedIn Login" id="ln-auth" class="ss-icon" src="assets/images/ss-icon/linkedin-icon.png" width="50" height="50">
+        </a>
+
+        </div>
+      </div>
+  </div>
+
+</div>
   </body>
   <script src="assets/javascripts/login.js"></script>
 </html>

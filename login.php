@@ -40,14 +40,12 @@ if(empty($_POST))
 		$_POST['first-name'] = strip($_POST['first-name']);
 		$_POST['last-name'] = strip($_POST['last-name']);
 		$pass = strip($_POST['password']);
-		$isDriver = (!empty($_POST['driver']) ? 'true' : 'false');
 	
-		$result = pg_query("INSERT INTO users(email, first_name, last_name, driver, encrypted_password, regIP, last_sign_in_at)
+		$result = pg_query("INSERT INTO users(email, first_name, last_name, encrypted_password, regIP, last_sign_in_at)
 						VALUES(
 							'".$_POST['username']."',
 							'".$_POST['first-name']."',
 							'".$_POST['last-name']."',
-							'".$isDriver."',
 							'".md5($pass)."',
 							'".$_SERVER['REMOTE_ADDR']."',
 							'".date("Y-m-d H:i:s")."'
@@ -56,6 +54,8 @@ if(empty($_POST))
 		if(pg_affected_rows($result)==1)
 		{
 			$_SESSION['msg']['reg-success']='Congratulations on making a new account!';
+			$user = current_user($_POST['username'], md5($pass));
+			set_authenticated_cookie($user);
 		} else
 		{
 			$err[] = 'This username is already taken!';
