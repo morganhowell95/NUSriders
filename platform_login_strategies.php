@@ -11,7 +11,7 @@
 		session_name('NUSRiders');
 		session_set_cookie_params(2*7*24*60*60);
 		session_start();
-		
+
 		$strategy = $_GET['platform'];
 			//enable session so third-party platforms will not throw a CSRF exception
 
@@ -62,10 +62,8 @@
 					$user = userFromThirdPartyPlatform($user_info);
 
 					if(is_null($user)) {
-						TESTFUCK;
 						header("Location: login.php");
 					} else {
-						TESTYAY;
 						header("Location: index.php");
 					}
 				}
@@ -92,7 +90,7 @@
 				$helper = $fb->getRedirectLoginHelper();
 
 				$permissions = ['email', 'public_profile']; // Optional permissions
-				$loginUrl = $helper->getLoginUrl('http://localhost:8080/mfork-nusriders/platform_login_strategies.php?platform=facebook', $permissions);
+				$loginUrl = $helper->getLoginUrl('http://localhost:8888/NUSriders3/platform_login_strategies.php?platform=facebook', $permissions);
 				return htmlspecialchars($loginUrl);
 				break;
 
@@ -109,7 +107,7 @@
 			default:
 				return NULL;
 
-		} 
+		}
 
 		return NULL;
 	}

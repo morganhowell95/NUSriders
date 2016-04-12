@@ -23,8 +23,13 @@
         <li> <a href="login.php" class="smoothScroll"> Login</a></li>
 
     <?php else: //if user is logged in  ?>
+      <?php if(current_user()->isAdmin()): ?>
+        <li>
+          <a href="ad-drivers-list.php">Dashboard</a>
+        </li>
+      <?php endif; ?>
 
-
+        </li>
         <!-- Ride Management -->
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -114,20 +119,20 @@
         <div class="row">
             <div class="col-lg-4 callout">
                 <span class="icon icon-stack"></span>
-                <h2>Bootstrap 3</h2>
-                <p>Shield Theme is powered by Bootstrap 3. The incredible Mobile First Framework is the best option to run your website. </p>
+                <h2>Platform</h2>
+                <p>Find people to carpool with!</p>
             </div><!-- col-lg-4 -->
 
             <div class="col-lg-4 callout">
                 <span class="icon icon-eye"></span>
-                <h2>Retina Ready</h2>
-                <p>You can use this theme with your iPhone, iPad or MacBook Pro. This theme is retina ready and that is awesome. </p>
+                <h2>Quick Search</h2>
+                <p>Search for rides that best matches your needs quickly with our built in algorithms. </p>
             </div><!-- col-lg-4 -->
 
             <div class="col-lg-4 callout">
                 <span class="icon icon-heart"></span>
-                <h2>Crafted with Love</h2>
-                <p>We don't make sites, we craft themes with love & passion. That is our most valued secret. We only do thing that we love.   </p>
+                <h2>Easily Share Rides</h2>
+                <p>Plan a route once, use it again for future rides!</p>
             </div><!-- col-lg-4 -->
         </div><!-- row -->
     </div><!-- greywrap -->
@@ -136,11 +141,11 @@
     <div class="container" id="about" name="about">
         <div class="row white">
         <br>
-            <h1 class="centered">A LITTLE ABOUT OUR AGENCY</h1>
+            <h1 class="centered">A LITTLE ABOUT NUSriders</h1>
             <hr>
 
             <div class="col-lg-6">
-                <p>We believe ideas come from everyone, everywhere. In fact, at BlackTie, everyone within our agency walls is a designer in their own right. And there are a few principles we believe—and we believe everyone should believe—about our design craft. These truths drive us, motivate us, and ultimately help us redefine the power of design. We’re big believers in doing right by our neighbors. After all, we grew up in the Twin Cities and we believe this place has much to offer. So we do what we can to support the community we love.</p>
+                <p>We believe ideas come from everyone, everywhere. In fact, at NUSriders, everyone within our agency walls is a designer in their own right. And there are a few principles we believe—and we believe everyone should believe—about our design craft. These truths drive us, motivate us, and ultimately help us redefine the power of design. We’re big believers in doing right by our neighbors. After all, we grew up in the Twin Cities and we believe this place has much to offer. So we do what we can to support the community we love.</p>
             </div><!-- col-lg-6 -->
 
             <div class="col-lg-6">
